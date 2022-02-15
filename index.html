@@ -11,45 +11,54 @@
 </head>
 
 <body>
-    <h1>Horse-Racing</h1>
+    <div class="title">
+        <h1>Horse-Racing</h1>
+        <button><img src="images/coin.png" alt=""> Money</button>
+    </div>
+
 
     <div class="lines">
         <div class="row1">
+            <h1>1</h1>
             <img id="1" src="images/horse-racing.png" alt="">
-            <hr class="solid">
         </div>
 
         <div class="row2">
+            <h1>2</h1>
             <img id="2" src="images/horse-racing.png" alt="">
-            <hr class="solid">
         </div>
+
         <div class="row3">
+            <h1>3</h1>
             <img id="3" src="images/horse-racing.png" alt="">
-            <hr class="solid">
         </div>
+
         <div class="row4">
+            <h1>4</h1>
             <img id="4" src="images/horse-racing.png" alt="">
-            <hr class="solid">
         </div>
+
         <div class="row5">
+            <h1>5</h1>
             <img id="5" src="images/horse-racing.png" alt="">
-            <hr class="solid">
         </div>
     </div>
 
     <p>Please select your horse to bet:</p>
     <div class="selectHorse">
-        <input id="horse1" type="radio">
+        <input id="horse1" type="radio" name="bet">
         <label for="horse1">Horse 1</label><br>
-        <input id="horse2" type="radio">
+        <input id="horse2" type="radio" name="bet">
         <label for="horse2">Horse 2</label><br>
-        <input id="horse3" type="radio">
+        <input id="horse3" type="radio" name="bet">
         <label for="horse3">Horse 3</label><br>
-        <input id="horse4" type="radio">
+        <input id="horse4" type="radio" name="bet">
         <label for="horse4">Horse 4</label><br>
-        <input id="horse5" type="radio">
+        <input id="horse5" type="radio" name="bet">
         <label for="horse5">Horse 5</label><br><br>
-        <button>Play!</button>
+        <label for="">Enter your amount here:</label><br>
+        <input id="money" type="number"><br>
+        <button class="play" onclick="startGame()">Play!</button>
     </div>
 
     <script src="script.js"></script>

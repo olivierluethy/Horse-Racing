@@ -1,55 +1,167 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+    display: flex;
+}
+
+.title button {
+    margin-top: 2rem;
+    margin-left: 98.8rem;
+    width: 6%;
+    height: 5%;
+    font-size: 20px;
+}
+
+.title button img {
+    width: 15.5%;
+    object-fit: contain;
+}
+
 .row1 {
-    height: 1rem;
-    background-color: yellow;
+    background-color: orange;
+    height: 10vh;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.row1 h1 {
+    border-top: 2px dotted black;
+    border-right: 2px dotted black;
+    border-bottom: 2px dotted black;
+    width: 2%;
+    margin-left: 2rem;
+    margin-top: 1.6rem;
 }
 
 .row1 img {
     position: absolute;
     width: 5%;
-    top: 103px;
+    top: 84px;
     transform: 0.5s;
+    left: 10px;
+}
+
+.row2 {
+    background-color: lightgreen;
+    height: 10vh;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.row2 h1 {
+    border-top: 2px dotted black;
+    border-right: 2px dotted black;
+    border-bottom: 2px dotted black;
+    width: 2%;
+    margin-left: 2rem;
+    margin-top: 1.6rem;
 }
 
 .row2 img {
     position: absolute;
     width: 5%;
-    top: 187px;
-    left: 0
+    top: 180px;
+    left: 10px;
+}
+
+.row3 {
+    background-color: lightblue;
+    height: 10vh;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.row3 h1 {
+    border-top: 2px dotted black;
+    border-right: 2px dotted black;
+    border-bottom: 2px dotted black;
+    width: 2%;
+    margin-left: 2rem;
+    margin-top: 1.6rem;
 }
 
 .row3 img {
     position: absolute;
     width: 5%;
-    top: 271px;
-    left: 0;
+    top: 276px;
+    left: 10px;
+}
+
+.row4 {
+    background-color: yellow;
+    height: 10vh;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.row4 h1 {
+    border-top: 2px dotted black;
+    border-right: 2px dotted black;
+    border-bottom: 2px dotted black;
+    width: 2%;
+    margin-left: 2rem;
+    margin-top: 1.6rem;
 }
 
 .row4 img {
     position: absolute;
     width: 5%;
-    top: 355px;
-    left: 0;
+    top: 371px;
+    left: 10px;
+}
+
+.row5 {
+    background-color: rgb(224, 59, 224);
+    height: 10vh;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.row5 h1 {
+    border-top: 2px dotted black;
+    border-right: 2px dotted black;
+    border-bottom: 2px dotted black;
+    width: 2%;
+    margin-left: 2rem;
+    margin-top: 1.6rem;
 }
 
 .row5 img {
     position: absolute;
     width: 5%;
-    top: 439px;
-    left: 0;
-}
-
-hr.solid {
-    border-top: 3px solid #bbb;
-    margin-top: 5rem;
+    top: 468px;
+    left: 10px;
 }
 
 .selectHorse {
-    margin-left: 45rem;
+    margin-left: 58rem;
 }
 
 p {
     font-size: 30px;
     text-align: center;
+}
+
+.play {
+    background-color: #008CBA;
+    border: 2px solid #008CBA;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.play:hover {
+    background-color: white;
+    border: 2px solid #008CBA;
+    color: #008CBA;
 }
 
 
