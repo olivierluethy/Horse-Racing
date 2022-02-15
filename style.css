@@ -1,0 +1,51 @@
+.row1 img {
+    position: absolute;
+    width: 5%;
+    top: 103px;
+    transform: 0.5s;
+}
+
+.row2 img {
+    position: absolute;
+    width: 5%;
+    top: 187px;
+    left: 0
+}
+
+.row3 img {
+    position: absolute;
+    width: 5%;
+    top: 271px;
+    left: 0;
+}
+
+.row4 img {
+    position: absolute;
+    width: 5%;
+    top: 355px;
+    left: 0;
+}
+
+.row5 img {
+    position: absolute;
+    width: 5%;
+    top: 439px;
+    left: 0;
+}
+
+hr.solid {
+    border-top: 3px solid #bbb;
+    margin-top: 5rem;
+}
+
+.selectHorse {
+    margin-left: 45rem;
+}
+
+p {
+    font-size: 30px;
+    text-align: center;
+}
+
+
+/* Max left 1450px */
