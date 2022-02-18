@@ -7,45 +7,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="images/horse-racing.png">
+    <meta name="author" content="Olivier Luethy">
+    <!-- Stellt die Library zur verfügung, um die Animation zu verwenden -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <title>Horse Racing</title>
 </head>
 
 <body>
-    <div class="title">
+    <div id="gameover">
+        <h1>GAME OVER</h1>
+        <p id="games"></p>
+    </div>
+    <div id="title">
         <h1>Horse-Racing</h1>
-        <button><img src="images/coin.png" alt=""> Money</button>
+        <button id="coins"><img src="images/coin.png" alt=""> 5 Coins</button>
     </div>
 
-
-    <div class="lines">
-        <div class="row1">
+    <div id="lines">
+        <div id="row1">
             <h1>1</h1>
             <img id="1" src="images/horse-racing.png" alt="">
         </div>
 
-        <div class="row2">
+        <div id="row2">
             <h1>2</h1>
             <img id="2" src="images/horse-racing.png" alt="">
         </div>
 
-        <div class="row3">
+        <div id="row3">
             <h1>3</h1>
             <img id="3" src="images/horse-racing.png" alt="">
         </div>
 
-        <div class="row4">
+        <div id="row4">
             <h1>4</h1>
             <img id="4" src="images/horse-racing.png" alt="">
         </div>
 
-        <div class="row5">
+        <div id="row5">
             <h1>5</h1>
             <img id="5" src="images/horse-racing.png" alt="">
         </div>
     </div>
 
-    <p>Please select your horse to bet:</p>
-    <div class="selectHorse">
+    <p id="title-selecthorse">Please select your horse to bet:</p>
+    <div id="selectHorse">
         <input id="horse1" type="radio" name="bet">
         <label for="horse1">Horse 1</label><br>
         <input id="horse2" type="radio" name="bet">
@@ -58,7 +65,7 @@
         <label for="horse5">Horse 5</label><br><br>
         <label for="">Enter your amount here:</label><br>
         <input id="money" type="number"><br>
-        <button class="play" onclick="startGame()">Play!</button>
+        <button id="play" onclick="startGame()">Play!</button>
     </div>
 
     <script src="script.js"></script>
