@@ -236,7 +236,7 @@ function gameover() {
     document.getElementById("title").style.display = "none";
     document.getElementById("lines").style.display = "none";
     document.getElementById("title-selecthorse").style.display = "none";
-    document.getElementById("selectHorse").style.display = "none";
+    document.querySelector("table").style.display = "none";
     document.body.style.backgroundColor = "black";
     document.getElementById("gameover").style.display = "block";
     document.getElementById("games").innerHTML = "You were able to play " + rounds + " round";

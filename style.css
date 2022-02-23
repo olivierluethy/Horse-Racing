@@ -70,7 +70,7 @@ body {
 #row1 img {
   position: absolute;
   width: 5%;
-  top: 84px;
+  top: 84.5px;
   transform: 0.5s;
   left: 10px;
 }
@@ -115,7 +115,7 @@ body {
 #row3 img {
   position: absolute;
   width: 5%;
-  top: 276px;
+  top: 274.5px;
   left: 10px;
 }
 
@@ -137,7 +137,7 @@ body {
 #row4 img {
   position: absolute;
   width: 5%;
-  top: 375px;
+  top: 370px;
   left: 10px;
 }
 
@@ -159,7 +159,7 @@ body {
 #row5 img {
   position: absolute;
   width: 5%;
-  top: 470px;
+  top: 465px;
   left: 10px;
 }
 
