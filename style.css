@@ -1,7 +1,33 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
+/* Title and Button with the coin */
+#title {
+  display: flex;
+}
+#title h1 {
+  width: 20%;
+}
+#title button {
+  margin-top: 2rem;
+  margin-left: 90rem;
+  width: 6%;
+  height: 5%;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: gold;
+  border: 1px solid gold;
+}
+#title button img {
+  width: 15.5%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+/* When the player has no coins left, this will happen */
 #gameover {
   display: none;
   font-size: 50px;
@@ -25,25 +51,7 @@ body {
   transform: 0.5s;
 }
 
-#title {
-  display: flex;
-}
-#title h1 {
-  width: 20%;
-}
-#title button {
-  margin-top: 2rem;
-  margin-left: 90rem;
-  width: 6%;
-  height: 5%;
-  font-size: 20px;
-}
-#title button img {
-  width: 15.5%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
+/* Rows with the horses */
 #row1 {
   background-color: orange;
   height: 10vh;
@@ -155,8 +163,15 @@ body {
   left: 10px;
 }
 
-#selectHorse {
+/* CSS for Errors when something went wrong */
+#selectHorse_error {
   text-align: center;
+  color: red;
+}
+
+#money_error {
+  text-align: center;
+  color: red;
 }
 
 #title-selecthorse {
@@ -164,26 +179,11 @@ body {
   text-align: center;
 }
 
-#play {
-  background-color: #008CBA;
-  border: 2px solid #008CBA;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
+table {
+  margin-left: auto;
+  margin-right: auto;
 }
-#play:hover {
-  background-color: white;
-  border: 2px solid #008CBA;
-  color: #008CBA;
-}
-
-#playagain {
+table tr td #playagain {
   display: none;
   background-color: #008CBA;
   border: 2px solid #008CBA;
@@ -196,10 +196,135 @@ body {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-#playagain:hover {
+table tr td #playagain:hover {
+  background-color: white;
+  border: 2px solid #008CBA;
+  color: #008CBA;
+}
+table tr td #resetInput {
+  background-color: red;
+  border: 2px solid red;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+table tr td #resetInput:hover {
+  background-color: white;
+  border: 2px solid red;
+  color: red;
+}
+table tr td #play {
+  background-color: #008CBA;
+  border: 2px solid #008CBA;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+table tr td #play:hover {
   background-color: white;
   border: 2px solid #008CBA;
   color: #008CBA;
 }
 
-/* Max left 1450px *//*# sourceMappingURL=style.css.map */
+/* Max left 1450px */
+/* Modal */
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: royalblue;
+  color: white;
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}/*# sourceMappingURL=style.css.map */

@@ -10,3 +10,6 @@ Link: https://www.codegrepper.com/code-examples/javascript/random+number+generat
 
 Issue 3: Check if a radio button
 Link: https://www.geeksforgeeks.org/how-to-check-whether-a-radio-button-is-selected-with-javascript/
+
+Issue 4: Value change event of input type number
+Link: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_oninput

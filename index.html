@@ -53,24 +53,82 @@
     </div>
 
     <p id="title-selecthorse">Please select your horse to bet:</p>
-    <div id="selectHorse">
-        <input id="horse1" type="radio" name="bet">
-        <label for="horse1">Horse 1</label><br>
-        <input id="horse2" type="radio" name="bet">
-        <label for="horse2">Horse 2</label><br>
-        <input id="horse3" type="radio" name="bet">
-        <label for="horse3">Horse 3</label><br>
-        <input id="horse4" type="radio" name="bet">
-        <label for="horse4">Horse 4</label><br>
-        <input id="horse5" type="radio" name="bet">
-        <label for="horse5">Horse 5</label>
-        <p id="selectHorse_error"></p>
-        <label for="">Enter your amount here:</label><br>
-        <input id="money" type="number"><br>
-        <p id="money_error"></p>
-        <button id="play" onclick="startGame()">Play!</button>
-        <button id="reset" onclick="reset()">Play!</button>
-        <button id="playagain" onclick="playagain()">Play again!</button>
+    <p id="selectHorse_error"></p>
+    <p id="money_error"></p>
+
+    <table>
+        <tr>
+            <td>
+                <input id="horse1" type="radio" name="bet">
+                <label for="horse1">Horse 1</label>
+            </td>
+            <td>
+                <label>Enter your bet here:</label><br>
+                <input id="money" type="number">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="horse2" type="radio" name="bet">
+                <label for="horse2">Horse 2</label>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <input id="horse3" type="radio" name="bet">
+                <label for="horse3">Horse 3</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="horse4" type="radio" name="bet">
+                <label for="horse4">Horse 4</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="horse5" type="radio" name="bet">
+                <label for="horse5">Horse 5</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="play" onclick="startGame()">Play</button>
+                <button id="playagain" onclick="playagain()">Play again</button>
+            </td>
+            <td><button id="resetInput" onclick="resetInput()">Reset</button></td>
+        </tr>
+    </table>
+
+    <!-- Modal -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Hello there</h2>
+            </div>
+            <div class="modal-body">
+                <h3 id="modal-amount-of-coins"></h3>
+                <h3>If you want to buy more coins, there is the pricing table</h3>
+                <p>1 coin = 10 Rappen</p>
+                <p>10 coins = 1 Franken</p>
+                <p>20 coins = 1.80 Franken</p>
+                <p>50 coins = 4.50 Franken</p>
+                <p>100 coins = 8.00 Franken</p>
+            </div>
+            <div class="modal-footer">
+                <h3>How many coins do you want to buy?</h3>
+                <label for="">Enter amount of coins:</label>
+                <input id="amountOfCoinsToBuy" oninput="convertToBuy()" type="number" placeholder="Enter numbers:">
+                <label for="">That will cost you: </label>
+                <input placeholder="Your price:" id="price" type="text" readonly>
+            </div>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
