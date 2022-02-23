@@ -27,9 +27,12 @@ body {
 
 #title {
     display: flex;
+    h1 {
+        width: 20%;
+    }
     button {
         margin-top: 2rem;
-        margin-left: 98.8rem;
+        margin-left: 90rem;
         width: 6%;
         height: 5%;
         font-size: 20px;
@@ -124,7 +127,7 @@ body {
     img {
         position: absolute;
         width: 5%;
-        top: 371px;
+        top: 375px;
         left: 10px;
     }
 }
@@ -146,7 +149,7 @@ body {
     img {
         position: absolute;
         width: 5%;
-        top: 468px;
+        top: 470px;
         left: 10px;
     }
 }
@@ -168,6 +171,25 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    &:hover {
+        background-color: white;
+        border: 2px solid #008CBA;
+        color: #008CBA;
+    }
+}
+
+#playagain {
+    display: none;
+    background-color: #008CBA;
+    border: 2px solid #008CBA;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.4s;

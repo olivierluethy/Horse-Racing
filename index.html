@@ -63,10 +63,14 @@
         <input id="horse4" type="radio" name="bet">
         <label for="horse4">Horse 4</label><br>
         <input id="horse5" type="radio" name="bet">
-        <label for="horse5">Horse 5</label><br><br>
+        <label for="horse5">Horse 5</label>
+        <p id="selectHorse_error"></p>
         <label for="">Enter your amount here:</label><br>
         <input id="money" type="number"><br>
+        <p id="money_error"></p>
         <button id="play" onclick="startGame()">Play!</button>
+        <button id="reset" onclick="reset()">Play!</button>
+        <button id="playagain" onclick="playagain()">Play again!</button>
     </div>
 
     <script src="script.js"></script>

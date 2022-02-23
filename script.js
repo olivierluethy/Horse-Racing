@@ -10,11 +10,11 @@ var coins = 5;
 var horseNumber = 0;
 var rounds = 1;
 
-document.getElementById("1").style.left = 0 + "px";
-document.getElementById("2").style.left = 0 + "px";
-document.getElementById("3").style.left = 0 + "px";
-document.getElementById("4").style.left = 0 + "px";
-document.getElementById("5").style.left = 0 + "px";
+document.getElementById("1").style.left = 10 + "px";
+document.getElementById("2").style.left = 10 + "px";
+document.getElementById("3").style.left = 10 + "px";
+document.getElementById("4").style.left = 10 + "px";
+document.getElementById("5").style.left = 10 + "px";
 
 function startLoop() {
     setTimeout(function() {
@@ -57,35 +57,29 @@ function startLoop() {
 function startGame() {
     buttonClick++;
     if (buttonClick == 1) {
+        if (document.getElementById('horse1').checked) {
+            horseNumber = 1;
+
+        } else if (document.getElementById('horse2').checked) {
+            horseNumber = 2;
+        } else if (document.getElementById('horse3').checked) {
+            horseNumber = 3;
+        } else if (document.getElementById('horse4').checked) {
+            horseNumber = 4;
+        } else if (document.getElementById('horse5').checked) {
+            horseNumber = 5;
+        } else {
+            document.getElementById("selectHorse_error").innerHTML = "Please select a horse";
+            buttonClick = 0;
+        }
         if (document.getElementById("money").value.length == 0) {
-            alert("Please enter your bet!");
+            document.getElementById("money_error").innerHTML = "Please enter amount of money";
             buttonClick = 0;
             return;
         } else {
             bet = document.getElementById("money").value;
-            if (document.getElementById('horse1').checked) {
-                horseNumber = 1;
-                startLoop();
-            } else if (document.getElementById('horse2').checked) {
-                horseNumber = 2;
-                startLoop();
-            } else if (document.getElementById('horse3').checked) {
-                horseNumber = 3;
-                startLoop();
-            } else if (document.getElementById('horse4').checked) {
-                horseNumber = 4;
-                startLoop();
-            } else if (document.getElementById('horse5').checked) {
-                horseNumber = 5;
-                startLoop();
-            } else {
-                alert("Please select the horse!");
-                buttonClick = 0;
-                return;
-            }
+            startLoop();
         }
-    } else {
-
     }
 }
 
@@ -111,6 +105,9 @@ function checkWinner() {
                 gameover();
             } else if (coins > 0) {
                 rounds++;
+                buttonClick == 0;
+                document.getElementById("play").style.display = "none";
+                document.getElementById("playagain").style.display = "inline-block";
             }
         }
     } else if (parseInt(document.getElementById("2").style.left) > parseInt(document.getElementById("1").style.left) &&
@@ -133,6 +130,9 @@ function checkWinner() {
                 gameover();
             } else if (coins > 0) {
                 rounds++;
+                buttonClick == 0;
+                document.getElementById("play").style.display = "none";
+                document.getElementById("playagain").style.display = "inline-block";
             }
         }
     } else if (parseInt(document.getElementById("3").style.left) > parseInt(document.getElementById("1").style.left) &&
@@ -155,6 +155,9 @@ function checkWinner() {
                 gameover();
             } else if (coins > 0) {
                 rounds++;
+                buttonClick == 0;
+                document.getElementById("play").style.display = "none";
+                document.getElementById("playagain").style.display = "inline-block";
             }
         }
     } else if (parseInt(document.getElementById("4").style.left) > parseInt(document.getElementById("1").style.left) &&
@@ -177,6 +180,9 @@ function checkWinner() {
                 gameover();
             } else if (coins > 0) {
                 rounds++;
+                buttonClick == 0;
+                document.getElementById("play").style.display = "none";
+                document.getElementById("playagain").style.display = "inline-block";
             }
         }
     } else if (parseInt(document.getElementById("5").style.left) > parseInt(document.getElementById("1").style.left) &&
@@ -199,6 +205,9 @@ function checkWinner() {
                 gameover();
             } else if (coins > 0) {
                 rounds++;
+                buttonClick == 0;
+                document.getElementById("play").style.display = "none";
+                document.getElementById("playagain").style.display = "inline-block";
             }
         }
     }
@@ -212,4 +221,24 @@ function gameover() {
     document.body.style.backgroundColor = "black";
     document.getElementById("gameover").style.display = "block";
     document.getElementById("games").innerHTML = "You were able to play " + rounds + " round";
+}
+
+function playagain() {
+    win = 1700;
+    possition1 = 10;
+    possition2 = 10;
+    possition3 = 10;
+    possition4 = 10;
+    possition5 = 10;
+    buttonClick = 0;
+    bet = 0;
+    coins = 5;
+    horseNumber = 0;
+    rounds = 1;
+    document.getElementById("1").style.left = 10 + "px";
+    document.getElementById("2").style.left = 10 + "px";
+    document.getElementById("3").style.left = 10 + "px";
+    document.getElementById("4").style.left = 10 + "px";
+    document.getElementById("5").style.left = 10 + "px";
+    startGame();
 }
