@@ -16,6 +16,10 @@ document.getElementById("3").style.left = 10 + "px";
 document.getElementById("4").style.left = 10 + "px";
 document.getElementById("5").style.left = 10 + "px";
 
+/* Blocks right clicking on a webpage to see the source code */
+/* https://stackoverflow.com/questions/737022/how-do-i-disable-right-click-on-my-web-page */
+document.addEventListener('contextmenu', event => event.preventDefault());
+
 function startLoop() {
     setTimeout(function() {
         possition1 += Math.floor(Math.random() * 10) + 1;
@@ -304,9 +308,11 @@ var price = 0;
 
 function convertToBuy() {
     var coinsToBuy = document.getElementById("amountOfCoinsToBuy").value;
-    if (coinsToBuy == 0 || coinsToBuy <= 0) {
+    if (coinsToBuy <= 0) {
         document.getElementById("price").value = "";
+        document.getElementById("amountOfCoinsToBuy_error").innerHTML = "The amount must be bigger than 0";
     } else {
+        document.getElementById("amountOfCoinsToBuy_error").innerHTML = "";
         document.getElementById("price").value = coinsToBuy * 10 + " CHF";
     }
 }
