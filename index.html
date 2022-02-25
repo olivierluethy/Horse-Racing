@@ -20,10 +20,17 @@
         <p id="games"></p>
         <a href="index.html">Restart</a>
     </div>
-    <div id="title">
-        <h1>Horse-Racing</h1>
-        <button id="coins"><img src="images/coin.png" alt=""> 5 Coins</button>
-    </div>
+    <table class="title">
+        <tr>
+            <th style="text-align: left;">
+                <h1>Horse-Racing</h1>
+            </th>
+            <th style="text-align: center;">
+                <h1 id="whoWon"></h1>
+            </th>
+            <th style="text-align: right;"><button id="coins"><img src="images/Coin.svg" alt=""> 5 Coins</button></th>
+        </tr>
+    </table>
 
     <div id="lines">
         <div id="row1">
@@ -56,7 +63,7 @@
     <p id="selectHorse_error"></p>
     <p id="money_error"></p>
 
-    <table>
+    <table class="formTable">
         <tr>
             <td>
                 <input id="horse1" type="radio" name="bet">
@@ -126,7 +133,8 @@
                 <label for="">Enter amount of coins:</label>
                 <input id="amountOfCoinsToBuy" oninput="convertToBuy()" type="number" placeholder="Enter numbers:">
                 <label for="">That will cost you: </label>
-                <input placeholder="Your price:" id="price" type="text" readonly>
+                <input placeholder="Your price:" id="price" type="text" readonly><br>
+                <button id="fakeBuy">Buy</button><button id="realBuy">Nitpick</button>
             </div>
         </div>
 

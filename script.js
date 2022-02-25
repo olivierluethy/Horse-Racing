@@ -1,6 +1,5 @@
 /* When horse has this pixels, it wins */
-var win = 1700;
-
+var win = screen.width;
 /* Start position of each horse */
 var possition1 = 10,
     possition2 = 10,
@@ -8,42 +7,33 @@ var possition1 = 10,
     possition4 = 10,
     possition5 = 10;
 var buttonClick = 0;
-
 /* Amount of money the player wans to bet */
 var bet = 0;
-
 /* When the player winns, he gets coins. For the start you get 5 coins */
 var coins = 5;
 /* The horseNumer that has been selected by the player with radio buttons */
 var horseNumber = 0;
 /* The amount of rounds the player played */
 var rounds = 1;
-
 /* Amount of coins the player wants to buy */
 var coinsToBuy = 0;
 /* The price which the player has to pay for the coins */
 var price = 0;
-
 // Get the modal
 var modal = document.getElementById("myModal");
-
 // Get the button that opens the modal
 var btn = document.getElementById("coins");
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
+        modal.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
@@ -53,6 +43,7 @@ for (var x = 1; x < 6; x++) {
     document.getElementById(x).style.left = 10 + "px";
 }
 
+var checkedCounter = false;
 /* Blocks right clicking on a webpage to see the source code */
 /* https://stackoverflow.com/questions/737022/how-do-i-disable-right-click-on-my-web-page */
 /* document.addEventListener('contextmenu', event => event.preventDefault()); */
@@ -80,6 +71,7 @@ function startLoop() {
         else {
             checkWinner();
         }
+
         document.getElementById("1").style.left = possition1 + "px";
         document.getElementById("2").style.left = possition2 + "px";
         document.getElementById("3").style.left = possition3 + "px";
@@ -98,12 +90,16 @@ function startGame() {
             /* Check if the player has selected a horse */
             if (document.getElementById("horse" + x).checked) {
                 horseNumber = x;
+                checkedCounter = true;
                 document.getElementById("selectHorse_error").innerHTML = "";
-            } else {
-                /* If the player has nothing selected, this error text will be given out */
-                document.getElementById("selectHorse_error").innerHTML = "Please select a horse";
-                buttonClick = 0;
+                console.log(horseNumber + "is true");
             }
+        }
+
+        if (checkedCounter != true) {
+            /* If the player has nothing selected, this error text will be given out */
+            document.getElementById("selectHorse_error").innerHTML = "Please select a horse";
+            buttonClick = 0;
         }
 
         /* Check if the amount of money is equal to zero */
@@ -137,9 +133,9 @@ function checkWinner() {
         parseInt(document.getElementById("5").style.left)) {
 
         if (horseNumber == 1) {
-            playerHasWon();
+            playerHasWon(1, 1);
         } else {
-            playerHasLostRound();
+            playerHasLostRound(1, 0);
 
             if (coins <= 0) {
                 gameover();
@@ -152,9 +148,9 @@ function checkWinner() {
         parseInt(document.getElementById("4").style.left) &&
         parseInt(document.getElementById("5").style.left)) {
         if (horseNumber == 2) {
-            playerHasWon();
+            playerHasWon(2, 1);
         } else {
-            playerHasLostRound();
+            playerHasLostRound(2, 0);
 
             if (coins <= 0) {
                 gameover();
@@ -167,9 +163,9 @@ function checkWinner() {
         parseInt(document.getElementById("4").style.left) &&
         parseInt(document.getElementById("5").style.left)) {
         if (horseNumber == 3) {
-            playerHasWon();
+            playerHasWon(3, 1);
         } else {
-            playerHasLostRound();
+            playerHasLostRound(3, 0);
 
             if (coins <= 0) {
                 gameover();
@@ -182,9 +178,9 @@ function checkWinner() {
         parseInt(document.getElementById("3").style.left) &&
         parseInt(document.getElementById("5").style.left)) {
         if (horseNumber == 4) {
-            playerHasWon();
+            playerHasWon(4, 1);
         } else {
-            playerHasLostRound();
+            playerHasLostRound(4, 0);
 
             if (coins <= 0) {
                 gameover();
@@ -197,9 +193,9 @@ function checkWinner() {
         parseInt(document.getElementById("3").style.left) &&
         parseInt(document.getElementById("4").style.left)) {
         if (horseNumber == 5) {
-            playerHasWon();
+            playerHasWon(5, 1);
         } else {
-            playerHasLostRound();
+            playerHasLostRound(5, 0);
 
             if (coins <= 0) {
                 gameover();
@@ -228,7 +224,6 @@ function resetInput() {
 }
 
 function playagain() {
-    win = 1700;
     possition1 = 10;
     possition2 = 10;
     possition3 = 10;
@@ -236,26 +231,33 @@ function playagain() {
     possition5 = 10;
     buttonClick = 0;
     bet = 0;
-    coins = 5;
     horseNumber = 0;
     rounds = 1;
     for (var x = 1; x < 6; x++) {
         document.getElementById(x).style.left = 10 + "px";
     }
+    document.getElementById("whoWon").innerHTML = "";
 
     startGame();
 }
 
-function playerHasWon() {
+function playerHasWon(winner, wonLost) {
     confetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 }
     });
     coins += bet * 2;
-    document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
+    document.getElementById("coins").innerHTML = "<img src='images/Coin.svg' alt=''>" + " " + coins + " " + "Coins";
     document.getElementById("play").style.display = "none";
     document.getElementById("playagain").style.display = "inline-block";
+    if (wonLost == 1) {
+        document.getElementById("whoWon").style.color = "green";
+        document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
+    } else {
+        document.getElementById("whoWon").style.color = "red";
+        document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
+    }
 }
 
 function playerHasStillCoinsLeft() {
@@ -265,15 +267,23 @@ function playerHasStillCoinsLeft() {
     document.getElementById("playagain").style.display = "inline-block";
 }
 
-function playerHasLostRound() {
+function playerHasLostRound(winner, wonLost) {
     coins -= bet;
-    document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
+    document.getElementById("coins").innerHTML = "<img src='images/Coin.svg' alt=''>" + " " + coins + " " + "Coins";
+    document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
+    if (wonLost == 1) {
+        document.getElementById("whoWon").style.color = "green";
+        document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
+    } else {
+        document.getElementById("whoWon").style.color = "red";
+        document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
+    }
 }
 
 document.getElementById("modal-amount-of-coins").innerHTML = "You currently have: " + coins + " coins.";
 
 function convertToBuy() {
-    var coinsToBuy = document.getElementById("amountOfCoinsToBuy").value;
+    coinsToBuy = parseInt(document.getElementById("amountOfCoinsToBuy").value);
     if (coinsToBuy <= 0) {
         document.getElementById("price").value = "";
         document.getElementById("amountOfCoinsToBuy_error").innerHTML = "The amount must be bigger than 0";
@@ -282,3 +292,13 @@ function convertToBuy() {
         document.getElementById("price").value = coinsToBuy * 10 + " CHF";
     }
 }
+
+document.getElementById("fakeBuy").addEventListener("click", function() {
+    window.location = "https://www.paypal.com/ch/home";
+})
+
+document.getElementById("realBuy").addEventListener("click", function() {
+    coins += coinsToBuy;
+    document.getElementById("coins").innerHTML = "<img src='images/Coin.svg' alt=''>" + " " + coins + " " + "Coins";
+    document.getElementById("modal-amount-of-coins").innerHTML = "You currently have: " + coins + " coins.";
+})

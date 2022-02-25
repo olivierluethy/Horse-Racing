@@ -1,7 +1,7 @@
 # Horse-Racing Game with Javascript
 Here I'll describe how I build this game and where my issues where.
 
-## Website who helped me
+## Websites that helped me
 Issue 1: How do I add a delay in a JavaScript loop?
 Link: https://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
 
@@ -13,3 +13,6 @@ Link: https://www.geeksforgeeks.org/how-to-check-whether-a-radio-button-is-selec
 
 Issue 4: Value change event of input type number
 Link: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_oninput
+
+Issue 5: For Loop in Javascript (document.getElementById)
+Link: https://stackoverflow.com/questions/26847366/for-loop-in-javascript-document-getelementbyid

@@ -1,27 +1,23 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
   overflow-y: hidden;
 }
 
 /* Title and Button with the coin */
-#title {
-  display: flex;
+.title {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
-#title h1 {
+.title tr th button {
   width: 20%;
-}
-#title button {
-  margin-top: 2rem;
-  margin-left: 90rem;
-  width: 6%;
-  height: 5%;
   font-size: 20px;
   cursor: pointer;
   background-color: gold;
   border: 1px solid gold;
 }
-#title button img {
+.title tr th button img {
   width: 15.5%;
   -o-object-fit: contain;
      object-fit: contain;
@@ -184,11 +180,11 @@ body {
   text-align: center;
 }
 
-table {
+.formTable {
   margin-left: auto;
   margin-right: auto;
 }
-table tr td #playagain {
+.formTable tr td #playagain {
   display: none;
   background-color: #008CBA;
   border: 2px solid #008CBA;
@@ -201,12 +197,12 @@ table tr td #playagain {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-table tr td #playagain:hover {
+.formTable tr td #playagain:hover {
   background-color: white;
   border: 2px solid #008CBA;
   color: #008CBA;
 }
-table tr td #resetInput {
+.formTable tr td #resetInput {
   background-color: red;
   border: 2px solid red;
   color: white;
@@ -218,12 +214,12 @@ table tr td #resetInput {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-table tr td #resetInput:hover {
+.formTable tr td #resetInput:hover {
   background-color: white;
   border: 2px solid red;
   color: red;
 }
-table tr td #play {
+.formTable tr td #play {
   background-color: #008CBA;
   border: 2px solid #008CBA;
   color: white;
@@ -235,15 +231,12 @@ table tr td #play {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-table tr td #play:hover {
+.formTable tr td #play:hover {
   background-color: white;
   border: 2px solid #008CBA;
   color: #008CBA;
 }
 
-/* Max left 1450px */
-/* Modal */
-/* The Modal (background) */
 .modal {
   display: none;
   position: fixed;
@@ -294,6 +287,34 @@ table tr td #play:hover {
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
+}
+.modal .modal-content .modal-footer #fakeBuy {
+  background-color: purple;
+  border: 1px solid purple;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.modal .modal-content .modal-footer #fakeBuy:hover {
+  background-color: white;
+  color: purple;
+}
+.modal .modal-content .modal-footer #realBuy {
+  background-color: #5cb85c;
+  border: 1px solid #5cb85c;
+  color: #5cb85c;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
 }
 
 /* Add Animation */
