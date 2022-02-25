@@ -1,279 +1,28 @@
+/* When horse has this pixels, it wins */
 var win = 1700;
-var possition1 = 10;
-var possition2 = 10;
-var possition3 = 10;
-var possition4 = 10;
-var possition5 = 10;
+
+/* Start position of each horse */
+var possition1 = 10,
+    possition2 = 10,
+    possition3 = 10,
+    possition4 = 10,
+    possition5 = 10;
 var buttonClick = 0;
+
+/* Amount of money the player wans to bet */
 var bet = 0;
+
+/* When the player winns, he gets coins. For the start you get 5 coins */
 var coins = 5;
+/* The horseNumer that has been selected by the player with radio buttons */
 var horseNumber = 0;
+/* The amount of rounds the player played */
 var rounds = 1;
 
-document.getElementById("1").style.left = 10 + "px";
-document.getElementById("2").style.left = 10 + "px";
-document.getElementById("3").style.left = 10 + "px";
-document.getElementById("4").style.left = 10 + "px";
-document.getElementById("5").style.left = 10 + "px";
-
-/* Blocks right clicking on a webpage to see the source code */
-/* https://stackoverflow.com/questions/737022/how-do-i-disable-right-click-on-my-web-page */
-document.addEventListener('contextmenu', event => event.preventDefault());
-
-function startLoop() {
-    setTimeout(function() {
-        possition1 += Math.floor(Math.random() * 10) + 1;
-        possition2 += Math.floor(Math.random() * 10) + 1;
-        possition3 += Math.floor(Math.random() * 10) + 1;
-        possition4 += Math.floor(Math.random() * 10) + 1;
-        possition5 += Math.floor(Math.random() * 10) + 1;
-
-        if (parseInt(document.getElementById("1").style.left) <= win ||
-            parseInt(document.getElementById("2").style.left) <= win ||
-            parseInt(document.getElementById("3").style.left) <= win ||
-            parseInt(document.getElementById("4").style.left) <= win ||
-            parseInt(document.getElementById("5").style.left) <= win) {
-            startLoop();
-        } else {
-            checkWinner();
-        }
-
-        document.getElementById("1").style.left = possition1 + "px";
-        document.getElementById("2").style.left = possition2 + "px";
-        document.getElementById("3").style.left = possition3 + "px";
-        document.getElementById("4").style.left = possition4 + "px";
-        document.getElementById("5").style.left = possition5 + "px";
-
-        console.log(document.getElementById("1").style.left);
-        console.log(document.getElementById("2").style.left);
-        console.log(document.getElementById("3").style.left);
-        console.log(document.getElementById("4").style.left);
-        console.log(document.getElementById("5").style.left);
-
-        console.log(parseInt(document.getElementById("1").style.left));
-        console.log(parseInt(document.getElementById("2").style.left));
-        console.log(parseInt(document.getElementById("3").style.left));
-        console.log(parseInt(document.getElementById("4").style.left));
-        console.log(parseInt(document.getElementById("5").style.left));
-    }, 10)
-}
-
-function startGame() {
-    buttonClick++;
-    if (buttonClick == 1) {
-        if (document.getElementById('horse1').checked) {
-            horseNumber = 1;
-            document.getElementById("selectHorse_error").innerHTML = "";
-        } else if (document.getElementById('horse2').checked) {
-            document.getElementById("selectHorse_error").innerHTML = "";
-            horseNumber = 2;
-        } else if (document.getElementById('horse3').checked) {
-            document.getElementById("selectHorse_error").innerHTML = "";
-            horseNumber = 3;
-        } else if (document.getElementById('horse4').checked) {
-            document.getElementById("selectHorse_error").innerHTML = "";
-            horseNumber = 4;
-        } else if (document.getElementById('horse5').checked) {
-            document.getElementById("selectHorse_error").innerHTML = "";
-            horseNumber = 5;
-        } else {
-            document.getElementById("selectHorse_error").innerHTML = "Please select a horse";
-            buttonClick = 0;
-        }
-        if (document.getElementById("money").value == 0) {
-            document.getElementById("money_error").innerHTML = "Please enter amount of money";
-            buttonClick = 0;
-            return;
-        } else if (document.getElementById("money").value <= 0) {
-            document.getElementById("money_error").innerHTML = "The amount must be bigger than zero";
-            buttonClick = 0;
-            return;
-        } else {
-            document.getElementById("money_error").innerHTML = "";
-            bet = document.getElementById("money").value;
-            startLoop();
-        }
-    }
-}
-
-function checkWinner() {
-    if (parseInt(document.getElementById("1").style.left) > parseInt(document.getElementById("2").style.left) &&
-        parseInt(document.getElementById("3").style.left) &&
-        parseInt(document.getElementById("4").style.left) &&
-        parseInt(document.getElementById("5").style.left)) {
-
-        if (horseNumber == 1) {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-            coins += bet * 2;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-            document.getElementById("play").style.display = "none";
-            document.getElementById("playagain").style.display = "inline-block";
-        } else {
-            coins -= bet;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-
-            if (coins <= 0) {
-                gameover();
-            } else if (coins > 0) {
-                rounds++;
-                buttonClick == 0;
-                document.getElementById("play").style.display = "none";
-                document.getElementById("playagain").style.display = "inline-block";
-            }
-        }
-    } else if (parseInt(document.getElementById("2").style.left) > parseInt(document.getElementById("1").style.left) &&
-        parseInt(document.getElementById("3").style.left) &&
-        parseInt(document.getElementById("4").style.left) &&
-        parseInt(document.getElementById("5").style.left)) {
-        if (horseNumber == 2) {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-            coins += bet * 2;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-            document.getElementById("play").style.display = "none";
-            document.getElementById("playagain").style.display = "inline-block";
-        } else {
-            coins -= bet;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-
-            if (coins <= 0) {
-                gameover();
-            } else if (coins > 0) {
-                rounds++;
-                buttonClick == 0;
-                document.getElementById("play").style.display = "none";
-                document.getElementById("playagain").style.display = "inline-block";
-            }
-        }
-    } else if (parseInt(document.getElementById("3").style.left) > parseInt(document.getElementById("1").style.left) &&
-        parseInt(document.getElementById("2").style.left) &&
-        parseInt(document.getElementById("4").style.left) &&
-        parseInt(document.getElementById("5").style.left)) {
-        if (horseNumber == 3) {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-            coins += bet * 2;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-            document.getElementById("play").style.display = "none";
-            document.getElementById("playagain").style.display = "inline-block";
-        } else {
-            coins -= bet;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-
-            if (coins <= 0) {
-                gameover();
-            } else if (coins > 0) {
-                rounds++;
-                buttonClick == 0;
-                document.getElementById("play").style.display = "none";
-                document.getElementById("playagain").style.display = "inline-block";
-            }
-        }
-    } else if (parseInt(document.getElementById("4").style.left) > parseInt(document.getElementById("1").style.left) &&
-        parseInt(document.getElementById("2").style.left) &&
-        parseInt(document.getElementById("3").style.left) &&
-        parseInt(document.getElementById("5").style.left)) {
-        if (horseNumber == 4) {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-            coins += bet * 2;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-            document.getElementById("play").style.display = "none";
-            document.getElementById("playagain").style.display = "inline-block";
-        } else {
-            coins -= bet;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-
-            if (coins <= 0) {
-                gameover();
-            } else if (coins > 0) {
-                rounds++;
-                buttonClick == 0;
-                document.getElementById("play").style.display = "none";
-                document.getElementById("playagain").style.display = "inline-block";
-            }
-        }
-    } else if (parseInt(document.getElementById("5").style.left) > parseInt(document.getElementById("1").style.left) &&
-        parseInt(document.getElementById("2").style.left) &&
-        parseInt(document.getElementById("3").style.left) &&
-        parseInt(document.getElementById("4").style.left)) {
-        if (horseNumber == 5) {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-            coins += bet * 2;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-            document.getElementById("play").style.display = "none";
-            document.getElementById("playagain").style.display = "inline-block";
-        } else {
-            coins -= bet;
-            document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
-
-            if (coins <= 0) {
-                gameover();
-            } else if (coins > 0) {
-                rounds++;
-                buttonClick == 0;
-                document.getElementById("play").style.display = "none";
-                document.getElementById("playagain").style.display = "inline-block";
-            }
-        }
-    }
-}
-
-function gameover() {
-    document.getElementById("title").style.display = "none";
-    document.getElementById("lines").style.display = "none";
-    document.getElementById("title-selecthorse").style.display = "none";
-    document.querySelector("table").style.display = "none";
-    document.body.style.backgroundColor = "black";
-    document.getElementById("gameover").style.display = "block";
-    document.getElementById("games").innerHTML = "You were able to play " + rounds + " round";
-}
-
-function resetInput() {
-    document.getElementById('horse1').checked = false;
-    document.getElementById('horse2').checked = false;
-    document.getElementById('horse3').checked = false;
-    document.getElementById('horse4').checked = false;
-    document.getElementById('horse5').checked = false;
-    document.getElementById("money").value = "";
-}
-
-function playagain() {
-    win = 1700;
-    possition1 = 10;
-    possition2 = 10;
-    possition3 = 10;
-    possition4 = 10;
-    possition5 = 10;
-    buttonClick = 0;
-    bet = 0;
-    coins = 5;
-    horseNumber = 0;
-    rounds = 1;
-    document.getElementById("1").style.left = 10 + "px";
-    document.getElementById("2").style.left = 10 + "px";
-    document.getElementById("3").style.left = 10 + "px";
-    document.getElementById("4").style.left = 10 + "px";
-    document.getElementById("5").style.left = 10 + "px";
-    startGame();
-}
+/* Amount of coins the player wants to buy */
+var coinsToBuy = 0;
+/* The price which the player has to pay for the coins */
+var price = 0;
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -300,11 +49,228 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+for (var x = 1; x < 6; x++) {
+    document.getElementById(x).style.left = 10 + "px";
+}
+
+/* Blocks right clicking on a webpage to see the source code */
+/* https://stackoverflow.com/questions/737022/how-do-i-disable-right-click-on-my-web-page */
+/* document.addEventListener('contextmenu', event => event.preventDefault()); */
+
+/* Function that makes the horses running */
+function startLoop() {
+    setTimeout(function() {
+        /* After each loop, a new number will be generated and will be directly assigned to the variable */
+        possition1 += Math.floor(Math.random() * 10) + 1;
+        possition2 += Math.floor(Math.random() * 10) + 1;
+        possition3 += Math.floor(Math.random() * 10) + 1;
+        possition4 += Math.floor(Math.random() * 10) + 1;
+        possition5 += Math.floor(Math.random() * 10) + 1;
+
+        /* Check if a horse has already 1700px or more */
+        if (parseInt(document.getElementById("1").style.left) <= win ||
+            parseInt(document.getElementById("2").style.left) <= win ||
+            parseInt(document.getElementById("3").style.left) <= win ||
+            parseInt(document.getElementById("4").style.left) <= win ||
+            parseInt(document.getElementById("5").style.left) <= win) {
+            /* If not, the function will call itself */
+            startLoop();
+        }
+        /* If not, the "checkWinner" functio will be called to check who won */
+        else {
+            checkWinner();
+        }
+        document.getElementById("1").style.left = possition1 + "px";
+        document.getElementById("2").style.left = possition2 + "px";
+        document.getElementById("3").style.left = possition3 + "px";
+        document.getElementById("4").style.left = possition4 + "px";
+        document.getElementById("5").style.left = possition5 + "px";
+    }, 10)
+}
+
+/* This function checks if the user has entered all informations correctly  */
+function startGame() {
+    /* The avoid that the player clicks more than once, so that the horses run twice as fast */
+    buttonClick++;
+    /* If the player only clicked once */
+    if (buttonClick == 1) {
+        for (var x = 1; x < 6; x++) {
+            /* Check if the player has selected a horse */
+            if (document.getElementById("horse" + x).checked) {
+                horseNumber = x;
+                document.getElementById("selectHorse_error").innerHTML = "";
+            } else {
+                /* If the player has nothing selected, this error text will be given out */
+                document.getElementById("selectHorse_error").innerHTML = "Please select a horse";
+                buttonClick = 0;
+            }
+        }
+
+        /* Check if the amount of money is equal to zero */
+        if (document.getElementById("money").value == 0) {
+            /* If yes, the error message will be given out and the function will be closed */
+            document.getElementById("money_error").innerHTML = "Please enter amount of money";
+            buttonClick = 0;
+            return;
+        }
+        /* If the amount of money is equal or smaller than zero */
+        else if (document.getElementById("money").value <= 0) {
+            /* If yes, the error message will be given out and the function will be closed */
+            document.getElementById("money_error").innerHTML = "The amount must be bigger than zero";
+            buttonClick = 0;
+            return;
+        }
+        /* If the amount of money is bigger than zero, the "startLoop" Function will be called */
+        else {
+            document.getElementById("money_error").innerHTML = "";
+            bet = document.getElementById("money").value;
+            startLoop();
+        }
+    }
+}
+
+/* This function determines if the player has won or not */
+function checkWinner() {
+    if (parseInt(document.getElementById("1").style.left) > parseInt(document.getElementById("2").style.left) &&
+        parseInt(document.getElementById("3").style.left) &&
+        parseInt(document.getElementById("4").style.left) &&
+        parseInt(document.getElementById("5").style.left)) {
+
+        if (horseNumber == 1) {
+            playerHasWon();
+        } else {
+            playerHasLostRound();
+
+            if (coins <= 0) {
+                gameover();
+            } else if (coins > 0) {
+                playerHasStillCoinsLeft();
+            }
+        }
+    } else if (parseInt(document.getElementById("2").style.left) > parseInt(document.getElementById("1").style.left) &&
+        parseInt(document.getElementById("3").style.left) &&
+        parseInt(document.getElementById("4").style.left) &&
+        parseInt(document.getElementById("5").style.left)) {
+        if (horseNumber == 2) {
+            playerHasWon();
+        } else {
+            playerHasLostRound();
+
+            if (coins <= 0) {
+                gameover();
+            } else if (coins > 0) {
+                playerHasStillCoinsLeft();
+            }
+        }
+    } else if (parseInt(document.getElementById("3").style.left) > parseInt(document.getElementById("1").style.left) &&
+        parseInt(document.getElementById("2").style.left) &&
+        parseInt(document.getElementById("4").style.left) &&
+        parseInt(document.getElementById("5").style.left)) {
+        if (horseNumber == 3) {
+            playerHasWon();
+        } else {
+            playerHasLostRound();
+
+            if (coins <= 0) {
+                gameover();
+            } else if (coins > 0) {
+                playerHasStillCoinsLeft();
+            }
+        }
+    } else if (parseInt(document.getElementById("4").style.left) > parseInt(document.getElementById("1").style.left) &&
+        parseInt(document.getElementById("2").style.left) &&
+        parseInt(document.getElementById("3").style.left) &&
+        parseInt(document.getElementById("5").style.left)) {
+        if (horseNumber == 4) {
+            playerHasWon();
+        } else {
+            playerHasLostRound();
+
+            if (coins <= 0) {
+                gameover();
+            } else if (coins > 0) {
+                playerHasStillCoinsLeft();
+            }
+        }
+    } else if (parseInt(document.getElementById("5").style.left) > parseInt(document.getElementById("1").style.left) &&
+        parseInt(document.getElementById("2").style.left) &&
+        parseInt(document.getElementById("3").style.left) &&
+        parseInt(document.getElementById("4").style.left)) {
+        if (horseNumber == 5) {
+            playerHasWon();
+        } else {
+            playerHasLostRound();
+
+            if (coins <= 0) {
+                gameover();
+            } else if (coins > 0) {
+                playerHasStillCoinsLeft();
+            }
+        }
+    }
+}
+
+function gameover() {
+    document.getElementById("title").style.display = "none";
+    document.getElementById("lines").style.display = "none";
+    document.getElementById("title-selecthorse").style.display = "none";
+    document.querySelector("table").style.display = "none";
+    document.body.style.backgroundColor = "black";
+    document.getElementById("gameover").style.display = "block";
+    document.getElementById("games").innerHTML = "You were able to play " + rounds + " round";
+}
+
+function resetInput() {
+    for (var x = 1; x < 6; x++) {
+        document.getElementById('horse' + x).checked = false;
+    }
+    document.getElementById("money").value = "";
+}
+
+function playagain() {
+    win = 1700;
+    possition1 = 10;
+    possition2 = 10;
+    possition3 = 10;
+    possition4 = 10;
+    possition5 = 10;
+    buttonClick = 0;
+    bet = 0;
+    coins = 5;
+    horseNumber = 0;
+    rounds = 1;
+    for (var x = 1; x < 6; x++) {
+        document.getElementById(x).style.left = 10 + "px";
+    }
+
+    startGame();
+}
+
+function playerHasWon() {
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+    coins += bet * 2;
+    document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
+    document.getElementById("play").style.display = "none";
+    document.getElementById("playagain").style.display = "inline-block";
+}
+
+function playerHasStillCoinsLeft() {
+    rounds++;
+    buttonClick == 0;
+    document.getElementById("play").style.display = "none";
+    document.getElementById("playagain").style.display = "inline-block";
+}
+
+function playerHasLostRound() {
+    coins -= bet;
+    document.getElementById("coins").innerHTML = "<img src='images/coin.png' alt=''>" + " " + coins + " " + "Coins";
+}
 
 document.getElementById("modal-amount-of-coins").innerHTML = "You currently have: " + coins + " coins.";
-
-var coinsToBuy = 0;
-var price = 0;
 
 function convertToBuy() {
     var coinsToBuy = document.getElementById("amountOfCoinsToBuy").value;
