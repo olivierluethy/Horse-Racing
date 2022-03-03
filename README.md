@@ -1,18 +1,18 @@
-# Horse-Racing Game with Javascript
+# Horse-Racing with JavaScript
 Here I'll describe how I build this game and where my issues where.
 
 ## Websites that helped me
-Issue 1: How do I add a delay in a JavaScript loop?
+Issue 1: How do I add a delay in a JavaScript loop?<br>
 Link: https://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
 
-Issue 2: Generate random number between two values
+Issue 2: Generate random number between two values<br>
 Link: https://www.codegrepper.com/code-examples/javascript/random+number+generator+1-10+javascript
 
-Issue 3: Check if a radio button
+Issue 3: Check if a radio button<br>
 Link: https://www.geeksforgeeks.org/how-to-check-whether-a-radio-button-is-selected-with-javascript/
 
-Issue 4: Value change event of input type number
+Issue 4: Value change event of input type number<br>
 Link: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_oninput
 
-Issue 5: For Loop in Javascript (document.getElementById)
+Issue 5: For Loop in Javascript (document.getElementById)<br>
 Link: https://stackoverflow.com/questions/26847366/for-loop-in-javascript-document-getelementbyid

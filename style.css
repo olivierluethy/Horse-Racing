@@ -66,7 +66,7 @@ body {
 #row1 img {
   position: absolute;
   width: 5%;
-  top: 84.5px;
+  top: 90px;
   transform: 0.5s;
   left: 10px;
 }
@@ -89,7 +89,7 @@ body {
 #row2 img {
   position: absolute;
   width: 5%;
-  top: 180px;
+  top: 185px;
   left: 10px;
 }
 
@@ -111,7 +111,7 @@ body {
 #row3 img {
   position: absolute;
   width: 5%;
-  top: 274.5px;
+  top: 282px;
   left: 10px;
 }
 
@@ -133,7 +133,7 @@ body {
 #row4 img {
   position: absolute;
   width: 5%;
-  top: 370px;
+  top: 376px;
   left: 10px;
 }
 
@@ -155,7 +155,7 @@ body {
 #row5 img {
   position: absolute;
   width: 5%;
-  top: 465px;
+  top: 472px;
   left: 10px;
 }
 
@@ -336,5 +336,119 @@ body {
   to {
     top: 0;
     opacity: 1;
+  }
+}
+/* Responsive design */
+@media screen and (max-width: 1669px) {
+  #row1 img {
+    top: 96px;
+  }
+
+  #row2 img {
+    top: 192px;
+  }
+
+  #row3 img {
+    top: 288px;
+  }
+
+  #row4 img {
+    top: 383px;
+  }
+
+  #row5 img {
+    top: 478px;
+  }
+}
+@media screen and (max-width: 390px) {
+  .title {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .title tr th h1 {
+    font-size: 20px;
+  }
+  .title tr th button {
+    width: 50%;
+    font-size: 10px;
+    cursor: pointer;
+    background-color: gold;
+    border: 1px solid gold;
+  }
+  .title tr th button img {
+    width: 15.5%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+
+  #row1 {
+    height: 5vh;
+  }
+  #row1 img {
+    top: 76px;
+  }
+  #row1 h1 {
+    font-size: 10px;
+    width: 2%;
+    margin-left: 1rem;
+    margin-top: 0.9rem;
+  }
+
+  #row2 {
+    height: 5vh;
+  }
+  #row2 img {
+    top: 120px;
+  }
+  #row2 h1 {
+    font-size: 10px;
+    width: 2%;
+    margin-left: 1rem;
+    margin-top: 0.9rem;
+  }
+
+  #row3 {
+    height: 5vh;
+  }
+  #row3 img {
+    top: 165px;
+  }
+  #row3 h1 {
+    font-size: 10px;
+    width: 2%;
+    margin-left: 1rem;
+    margin-top: 0.9rem;
+  }
+
+  #row4 {
+    height: 5vh;
+  }
+  #row4 img {
+    top: 209px;
+  }
+  #row4 h1 {
+    font-size: 10px;
+    width: 2%;
+    margin-left: 1rem;
+    margin-top: 0.9rem;
+  }
+
+  #row5 {
+    height: 5vh;
+  }
+  #row5 img {
+    top: 253px;
+  }
+  #row5 h1 {
+    font-size: 10px;
+    width: 2%;
+    margin-left: 1rem;
+    margin-top: 0.9rem;
+  }
+
+  #title-selecthorse {
+    font-size: 20px;
   }
 }/*# sourceMappingURL=style.css.map */
