@@ -82,47 +82,47 @@ function startLoop() {
 
 /* This function checks if the user has entered all informations correctly  */
 function startGame() {
-    /* The avoid that the player clicks more than once, so that the horses run twice as fast */
-    buttonClick++;
-    /* If the player only clicked once */
-    if (buttonClick == 1) {
-        for (var x = 1; x < 6; x++) {
-            /* Check if the player has selected a horse */
-            if (document.getElementById("horse" + x).checked) {
-                horseNumber = x;
-                checkedCounter = true;
-                document.getElementById("selectHorse_error").innerHTML = "";
-                console.log(horseNumber + "is true");
-            }
-        }
+    // Define variables at the top of the function
+    var checkedCounter = false;
+    var horseNumber = 0;
+    var bet = 0;
+    // Increment buttonClick when the function is called
+buttonClick++;
 
-        if (checkedCounter != true) {
-            /* If the player has nothing selected, this error text will be given out */
-            document.getElementById("selectHorse_error").innerHTML = "Please select a horse";
-            buttonClick = 0;
-        }
+// If the player has clicked more than once, exit the function
+if (buttonClick > 1) {
+  return;
+}
 
-        /* Check if the amount of money is equal to zero */
-        if (document.getElementById("money").value == 0) {
-            /* If yes, the error message will be given out and the function will be closed */
-            document.getElementById("money_error").innerHTML = "Please enter amount of money";
-            buttonClick = 0;
-            return;
-        }
-        /* If the amount of money is equal or smaller than zero */
-        else if (document.getElementById("money").value <= 0) {
-            /* If yes, the error message will be given out and the function will be closed */
-            document.getElementById("money_error").innerHTML = "The amount must be bigger than zero";
-            buttonClick = 0;
-            return;
-        }
-        /* If the amount of money is bigger than zero, the "startLoop" Function will be called */
-        else {
-            document.getElementById("money_error").innerHTML = "";
-            bet = document.getElementById("money").value;
-            startLoop();
-        }
-    }
+// Check if the player has selected a horse
+for (var i = 1; i <= 5; i++) {
+  if (document.getElementById("horse" + i).checked) {
+    horseNumber = i;
+    checkedCounter = true;
+    console.log(horseNumber + "is true");
+    break; // Exit the loop when a horse is found
+  }
+}
+
+// If the player has not selected a horse, display an error message
+if (!checkedCounter) {
+  alert("Please select a horse");
+  buttonClick = 0;
+  return;
+}
+
+// Get the amount of money the player has bet
+bet = parseFloat(document.getElementById("money").value);
+
+// If the amount of money is not a positive number, display an error message
+if (isNaN(bet) || bet <= 0) {
+  alert("Please enter a valid amount of money");
+  buttonClick = 0;
+  return;
+}
+
+// Start the race
+startLoop();
 }
 
 /* This function determines if the player has won or not */
@@ -281,24 +281,30 @@ function playerHasLostRound(winner, wonLost) {
 }
 
 document.getElementById("modal-amount-of-coins").innerHTML = "You currently have: " + coins + " coins.";
+document.getElementById("fakeBuy").disabled = true;
+document.getElementById("fakeBuy").style.cursor="no-drop";
 
 function convertToBuy() {
     coinsToBuy = parseInt(document.getElementById("amountOfCoinsToBuy").value);
-    if (coinsToBuy <= 0) {
-        document.getElementById("price").value = "";
-        document.getElementById("amountOfCoinsToBuy_error").innerHTML = "The amount must be bigger than 0";
+    if(coinsToBuy || coinsToBuy === 0){
+        if (coinsToBuy <= 0) {
+            document.getElementById("amountOfCoinsToBuy_error").innerHTML = "The amount must be bigger than 0";
+            document.getElementById("fakeBuy").disabled = true;
+            document.getElementById("fakeBuy").style.cursor="no-drop";
+        } else {
+            document.getElementById("amountOfCoinsToBuy_error").innerHTML = "";
+            document.getElementById("price").value = coinsToBuy / 10 + " CHF";
+            document.getElementById("fakeBuy").disabled = false;
+            document.getElementById("fakeBuy").style.cursor="pointer";
+        }
     } else {
-        document.getElementById("amountOfCoinsToBuy_error").innerHTML = "";
-        document.getElementById("price").value = coinsToBuy * 10 + " CHF";
+        document.getElementById("amountOfCoinsToBuy_error").innerHTML = "Please enter a valid amount";
+        document.getElementById("fakeBuy").disabled = true;
+        document.getElementById("price").value = "";
+        document.getElementById("fakeBuy").style.cursor="no-drop";
     }
 }
 
 document.getElementById("fakeBuy").addEventListener("click", function() {
     window.location = "https://www.paypal.com/ch/home";
-})
-
-document.getElementById("realBuy").addEventListener("click", function() {
-    coins += coinsToBuy;
-    document.getElementById("coins").innerHTML = "<img src='images/Coin.svg' alt=''>" + " " + coins + " " + "Coins";
-    document.getElementById("modal-amount-of-coins").innerHTML = "You currently have: " + coins + " coins.";
 })

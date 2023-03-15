@@ -184,19 +184,8 @@
         }
     }
     /* CSS for Errors when something went wrong */
-    
-    #selectHorse_error {
-        text-align: center;
-        color: red;
-    }
-    
-    #money_error {
-        text-align: center;
-        color: red;
-    }
-    
     #amountOfCoinsToBuy_error {
-        color: red;
+        color: yellow;
         font-weight: bold;
     }
     
