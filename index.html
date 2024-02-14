@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <!-- JavaScript Files -->
+    <script defer src="js/main.js"></script>
+    <script defer src="js/gameIsOver.js"></script>
+    <script defer src="js/modalWindow.js"></script>
+    <script defer src="js/objectMovement.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="images/horse-racing.png">
     <meta name="author" content="Olivier Luethy">
@@ -31,7 +36,6 @@
             <th style="text-align: right;"><button id="coins"><img src="images/Coin.svg" alt=""> 5 Coins</button></th>
         </tr>
     </table>
-
     <div id="lines">
         <div id="row1">
             <h1>1</h1>
@@ -40,22 +44,22 @@
 
         <div id="row2">
             <h1>2</h1>
-            <img id="2" src="images/horse-racing.png" alt="">
+            <img id="2" src="images/lightblue-horse.png" alt="">
         </div>
 
         <div id="row3">
             <h1>3</h1>
-            <img id="3" src="images/horse-racing.png" alt="">
+            <img id="3" src="images/lightgreen-horse.png" alt="">
         </div>
 
         <div id="row4">
             <h1>4</h1>
-            <img id="4" src="images/horse-racing.png" alt="">
+            <img id="4" src="images/orange-horse.png" alt="">
         </div>
 
         <div id="row5">
             <h1>5</h1>
-            <img id="5" src="images/horse-racing.png" alt="">
+            <img id="5" src="images/purple-horse.png" alt="">
         </div>
     </div>
 
@@ -63,9 +67,7 @@
 
     <table class="formTable">
         <tr>
-            <td>
-
-            </td>
+            <td></td>
             <td>
                 <label>Enter your bet here:</label><br>
             </td>
@@ -113,10 +115,8 @@
         </tr>
     </table>
 
-    <!-- Modal -->
     <!-- The Modal -->
     <div id="myModal" class="modal">
-
         <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
@@ -135,17 +135,14 @@
             <div class="modal-footer">
                 <h3>How many coins do you want to buy?</h3>
                 <p id="amountOfCoinsToBuy_error"></p>
-                <label for="">Enter amount of coins:</label>
-                <input id="amountOfCoinsToBuy" oninput="convertToBuy()" type="number" placeholder="Enter numbers:">
-                <label for="">That will cost you: </label>
-                <input placeholder="Your price:" id="price" type="text" readonly><br>
+                <label for="">Enter amount of coins</label>
+                <input id="amountOfCoinsToBuy" oninput="convertToBuy()" type="number" placeholder="Enter numbers:"><br><br>
+                <label for="">This will cost you: </label>
+                <input placeholder="Your price" id="price" type="text" readonly><br><br>
                 <button id="fakeBuy">Buy</button>
             </div>
         </div>
-
     </div>
-
-    <script src="js/main.js"></script>
 </body>
 
 </html>

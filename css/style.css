@@ -1,52 +1,51 @@
-body {
+* {
+  /* -- Costum scroll bar -- */
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  /* Title and Button with the coin */
+  /* When the player has no coins left, this will happen */
+  /* Rows with the horses */
+  /* CSS for Errors when something went wrong */
+  /* Add Animation */
+}
+* body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
-/* -- Costum scroll bar -- */
-/* width */
-::-webkit-scrollbar {
-  width: 20px;
+* ::-webkit-scrollbar {
+  width: 8px;
 }
-
-/* Track */
-::-webkit-scrollbar-track {
+* ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
-
-/* Handle */
-::-webkit-scrollbar-thumb {
+* ::-webkit-scrollbar-thumb {
   background: red;
   border-radius: 10px;
 }
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
+* ::-webkit-scrollbar-thumb:hover {
+  background: #f8765c;
 }
-
-/* Title and Button with the coin */
-.title {
+* .title {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
-.title tr th button {
+* .title tr th button {
   width: 20%;
   font-size: 20px;
   cursor: pointer;
   background-color: gold;
   border: 1px solid gold;
 }
-.title tr th button img {
+* .title tr th button img {
   width: 15.5%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-
-/* When the player has no coins left, this will happen */
-#gameover {
+* #gameover {
   display: none;
   font-size: 50px;
   font-weight: bold;
@@ -55,29 +54,27 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 10%;
 }
-#gameover a {
+* #gameover a {
   padding: 15px 32px;
   color: black;
   background-color: white;
   text-decoration: none;
   transform: 0.5s;
 }
-#gameover a:hover {
+* #gameover a:hover {
   border: 1px solid white;
   color: white;
   background-color: black;
   transform: 0.5s;
 }
-
-/* Rows with the horses */
-#row1 {
+* #row1 {
   background-color: orange;
   height: 10vh;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   border-right: 5px solid black;
 }
-#row1 h1 {
+* #row1 h1 {
   border-top: 2px dotted black;
   border-right: 2px dotted black;
   border-bottom: 2px dotted black;
@@ -85,22 +82,21 @@ body {
   margin-left: 2rem;
   margin-top: 1.6rem;
 }
-#row1 img {
+* #row1 img {
   position: absolute;
   width: 5%;
   top: 90px;
   transform: 0.5s;
   left: 10px;
 }
-
-#row2 {
+* #row2 {
   background-color: lightgreen;
   height: 10vh;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   border-right: 5px solid black;
 }
-#row2 h1 {
+* #row2 h1 {
   border-top: 2px dotted black;
   border-right: 2px dotted black;
   border-bottom: 2px dotted black;
@@ -108,21 +104,20 @@ body {
   margin-left: 2rem;
   margin-top: 1.6rem;
 }
-#row2 img {
+* #row2 img {
   position: absolute;
   width: 5%;
   top: 185px;
   left: 10px;
 }
-
-#row3 {
+* #row3 {
   background-color: lightblue;
   height: 10vh;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   border-right: 5px solid black;
 }
-#row3 h1 {
+* #row3 h1 {
   border-top: 2px dotted black;
   border-right: 2px dotted black;
   border-bottom: 2px dotted black;
@@ -130,21 +125,20 @@ body {
   margin-left: 2rem;
   margin-top: 1.6rem;
 }
-#row3 img {
+* #row3 img {
   position: absolute;
   width: 5%;
   top: 282px;
   left: 10px;
 }
-
-#row4 {
+* #row4 {
   background-color: yellow;
   height: 10vh;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   border-right: 5px solid black;
 }
-#row4 h1 {
+* #row4 h1 {
   border-top: 2px dotted black;
   border-right: 2px dotted black;
   border-bottom: 2px dotted black;
@@ -152,21 +146,20 @@ body {
   margin-left: 2rem;
   margin-top: 1.6rem;
 }
-#row4 img {
+* #row4 img {
   position: absolute;
   width: 5%;
   top: 376px;
   left: 10px;
 }
-
-#row5 {
+* #row5 {
   background-color: rgb(224, 59, 224);
   height: 10vh;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   border-right: 5px solid black;
 }
-#row5 h1 {
+* #row5 h1 {
   border-top: 2px dotted black;
   border-right: 2px dotted black;
   border-bottom: 2px dotted black;
@@ -174,29 +167,48 @@ body {
   margin-left: 2rem;
   margin-top: 1.6rem;
 }
-#row5 img {
+* #row5 img {
   position: absolute;
   width: 5%;
   top: 472px;
   left: 10px;
 }
-
-/* CSS for Errors when something went wrong */
-#amountOfCoinsToBuy_error {
+* #amountOfCoinsToBuy_error {
   color: yellow;
   font-weight: bold;
 }
-
-#title-selecthorse {
+* #title-selecthorse {
   font-size: 30px;
   text-align: center;
 }
-
-.formTable {
+* .formTable {
   margin-left: auto;
   margin-right: auto;
 }
-.formTable tr td #playagain {
+* .formTable tr td input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  /* Remove default checkbox styles */
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+* .formTable tr td input[type=radio]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+* .formTable tr td input[type=radio]:hover {
+  box-shadow: 0 0 0 1px #ccc;
+}
+* .formTable tr td label {
+  margin-left: 8px;
+  margin-right: 8px;
+  font-size: 25px;
+}
+* .formTable tr td #playagain {
   display: none;
   background-color: #008CBA;
   border: 2px solid #008CBA;
@@ -209,12 +221,12 @@ body {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-.formTable tr td #playagain:hover {
+* .formTable tr td #playagain:hover {
   background-color: white;
   border: 2px solid #008CBA;
   color: #008CBA;
 }
-.formTable tr td #resetInput {
+* .formTable tr td #resetInput {
   background-color: red;
   border: 2px solid red;
   color: white;
@@ -226,12 +238,12 @@ body {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-.formTable tr td #resetInput:hover {
+* .formTable tr td #resetInput:hover {
   background-color: white;
   border: 2px solid red;
   color: red;
 }
-.formTable tr td #play {
+* .formTable tr td #play {
   background-color: #008CBA;
   border: 2px solid #008CBA;
   color: white;
@@ -243,13 +255,12 @@ body {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-.formTable tr td #play:hover {
+* .formTable tr td #play:hover {
   background-color: white;
   border: 2px solid #008CBA;
   color: #008CBA;
 }
-
-.modal {
+* .modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -262,7 +273,7 @@ body {
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
-.modal .modal-content {
+* .modal .modal-content {
   position: relative;
   background-color: #fefefe;
   margin: auto;
@@ -275,32 +286,32 @@ body {
   animation-name: animatetop;
   animation-duration: 0.4s;
 }
-.modal .modal-content .modal-header {
+* .modal .modal-content .modal-header {
   padding: 2px 16px;
   background-color: royalblue;
   color: white;
 }
-.modal .modal-content .modal-header .close {
+* .modal .modal-content .modal-header .close {
   color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-.modal .modal-content .modal-header .close:hover,
-.modal .modal-content .modal-header .close:focus {
+* .modal .modal-content .modal-header .close:hover,
+* .modal .modal-content .modal-header .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
-.modal .modal-content .modal-body {
+* .modal .modal-content .modal-body {
   padding: 2px 16px;
 }
-.modal .modal-content .modal-footer {
+* .modal .modal-content .modal-footer {
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
 }
-.modal .modal-content .modal-footer #fakeBuy {
+* .modal .modal-content .modal-footer #fakeBuy {
   background-color: purple;
   border: 1px solid purple;
   color: white;
@@ -313,11 +324,11 @@ body {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-.modal .modal-content .modal-footer #fakeBuy:hover {
+* .modal .modal-content .modal-footer #fakeBuy:hover {
   background-color: white;
   color: purple;
 }
-.modal .modal-content .modal-footer #realBuy {
+* .modal .modal-content .modal-footer #realBuy {
   background-color: #5cb85c;
   border: 1px solid #5cb85c;
   color: #5cb85c;
@@ -328,8 +339,6 @@ body {
   font-size: 16px;
   margin: 4px 2px;
 }
-
-/* Add Animation */
 @keyframes animatetop {
   from {
     top: -300px;
@@ -340,6 +349,7 @@ body {
     opacity: 1;
   }
 }
+
 /* Responsive design */
 @media screen and (max-width: 1669px) {
   #row1 img {
@@ -440,6 +450,69 @@ body {
     margin-left: 1rem;
     margin-top: 0.9rem;
   }
+  #title-selecthorse {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  /* Adjustments for title and buttons */
+  .title tr th button {
+    width: 100%;
+    font-size: 14px;
+  }
+  .title tr th h1 {
+    font-size: 16px;
+  }
+  /* Adjustments for horse rows */
+  #row1,
+  #row2,
+  #row3,
+  #row4,
+  #row5 {
+    height: auto;
+  }
+  #row1 h1,
+  #row2 h1,
+  #row3 h1,
+  #row4 h1,
+  #row5 h1 {
+    font-size: 14px;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    width: auto;
+  }
+  #row1 img,
+  #row2 img,
+  #row3 img,
+  #row4 img,
+  #row5 img {
+    width: 15%;
+    top: auto;
+    left: 5px;
+    position: relative;
+    margin-top: 10px;
+  }
+  /* Adjustments for modal */
+  .modal .modal-content {
+    width: 90%;
+  }
+  /* Adjustments for form table */
+  .formTable tr td input[type=radio] {
+    width: 16px;
+    height: 16px;
+  }
+  .formTable tr td label {
+    font-size: 14px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .formTable tr td #play,
+  .formTable tr td #resetInput,
+  .formTable tr td #playagain {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  /* Adjustments for title-selecthorse */
   #title-selecthorse {
     font-size: 20px;
   }
