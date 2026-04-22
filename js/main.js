@@ -1,60 +1,102 @@
-/* When horse has this pixels, it wins */
-var win = screen.width;
-/* Start position of each horse */
-var possition1 = 10,
-    possition2 = 10,
-    possition3 = 10,
-    possition4 = 10,
-    possition5 = 10;
-var buttonClick = 0;
-/* Amount of money the player wans to bet */
-var bet = 0;
-/* When the player winns, he gets coins. For the start you get 5 coins */
+/* Global game state. Intentionally attached to window so every module
+   (objectMovement, gameIsOver, modalWindow) sees the same values. */
 var coins = 5;
-/* The horseNumer that has been selected by the player with radio buttons */
+var bet = 0;
 var horseNumber = 0;
-/* The amount of rounds the player played */
 var rounds = 1;
-/* Amount of coins the player wants to buy */
+var raceInProgress = false;
+var buttonClick = 0;
+
+/* Modal purchase state */
 var coinsToBuy = 0;
-/* The price which the player has to pay for the coins */
 var price = 0;
-// Get the modal
-var modal = document.getElementById("myModal");
-// Get the button that opens the modal
-var btn = document.getElementById("coins");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
-var raceInProgress = true; // Variable to track if the race is in progress
+/* Race config */
+var HURDLES_PER_LANE = 4;
+var LANE_COUNT = 5;
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-        modal.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-for (var x = 1; x < 6; x++) {
-    document.getElementById(x).style.left = 10 + "px";
-}
-
-var checkedCounter = false;
-
-/* Function that makes the horses running */
-var horsePositions = [10, 10, 10, 10, 10];
+/* Horse positions expressed as 0..100 (percentage of track) */
+var horsePositions = [0, 0, 0, 0, 0];
+var horseSpeeds = [0, 0, 0, 0, 0];
 var horseElements = [];
+var horseWrappers = [];
+var horseBodies = [];
+
+/* Per-horse hurdle schedule: array of { pos: %, cleared: bool } */
+var hurdleSchedules = [[], [], [], [], []];
+
+/* DOM references resolved after load */
+var modal, modalBtn, modalClose, track, countdownOverlay, countdownText;
+
+document.addEventListener("DOMContentLoaded", function () {
+    modal = document.getElementById("myModal");
+    modalBtn = document.getElementById("coins");
+    modalClose = document.querySelector("#myModal .close");
+    track = document.getElementById("track");
+    countdownOverlay = document.getElementById("countdown");
+    countdownText = document.getElementById("countdownText");
+
+    for (var i = 1; i <= LANE_COUNT; i++) {
+        horseElements.push(document.getElementById(String(i)));
+        horseWrappers.push(document.querySelector('.horse-wrapper[data-horse="' + i + '"]'));
+        horseBodies.push(document.querySelector('.horse-wrapper[data-horse="' + i + '"] .horse-body'));
+    }
+
+    /* Wire horse-pick radios to keep track of selected horse for UI polish */
+    document.querySelectorAll('input[name="bet"]').forEach(function (r) {
+        r.addEventListener("change", function () {
+            horseNumber = parseInt(this.value, 10);
+        });
+    });
+
+    /* Modal open/close */
+    modalBtn.addEventListener("click", function () { modal.classList.remove("hidden"); });
+    modalClose.addEventListener("click", function () { modal.classList.add("hidden"); });
+    window.addEventListener("click", function (e) {
+        if (e.target === modal) modal.classList.add("hidden");
+    });
+
+    updateCoinsUI();
+    placeHurdles();
+});
+
+function updateCoinsUI() {
+    var el = document.getElementById("coinCount");
+    if (el) el.textContent = coins;
+    var modalAmount = document.getElementById("modal-amount-of-coins");
+    if (modalAmount) modalAmount.textContent = "You currently have: " + coins + " coins.";
+}
 
 function resetInput() {
-    for (var x = 1; x < 6; x++) {
-        document.getElementById('horse' + x).checked = false;
-    }
+    document.querySelectorAll('input[name="bet"]').forEach(function (r) { r.checked = false; });
     document.getElementById("money").value = "";
+    horseNumber = 0;
+}
+
+/* Generate hurdle positions shared across lanes in count but jittered per lane
+   so every lane has the same number of hurdles (fairness) with unique layouts. */
+function placeHurdles() {
+    var basePositions = [];
+    var segment = (82 - 16) / HURDLES_PER_LANE; // spread between 16% and 82%
+    for (var i = 0; i < HURDLES_PER_LANE; i++) {
+        basePositions.push(16 + segment * i + segment / 2);
+    }
+
+    for (var lane = 1; lane <= LANE_COUNT; lane++) {
+        var container = document.querySelector('.hurdles[data-hurdles="' + lane + '"]');
+        if (!container) continue;
+        container.innerHTML = "";
+        hurdleSchedules[lane - 1] = [];
+
+        basePositions.forEach(function (base) {
+            var jitter = (Math.random() - 0.5) * 6; // ±3%
+            var pos = Math.max(12, Math.min(84, base + jitter));
+            var el = document.createElement("div");
+            el.className = "hurdle";
+            el.style.left = pos + "%";
+            el.innerHTML = '<span class="left"></span><span class="right"></span>';
+            container.appendChild(el);
+            hurdleSchedules[lane - 1].push({ pos: pos, cleared: false });
+        });
+    }
 }

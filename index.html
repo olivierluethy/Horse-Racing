@@ -5,141 +5,263 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Olivier Luethy">
+    <title>Horse Racing</title>
+
+    <link rel="shortcut icon" href="images/horse-racing.png">
     <link rel="stylesheet" href="css/style.css">
-    <!-- JavaScript Files -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        turf: {
+                            900: '#0b1418',
+                            800: '#10201f',
+                            700: '#163030',
+                        },
+                        track: {
+                            900: '#1b2a2a',
+                            800: '#243a3a',
+                            700: '#2d4a4a',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Inter"', 'ui-sans-serif', 'system-ui'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <script defer src="js/main.js"></script>
-    <script defer src="js/gameIsOver.js"></script>
     <script defer src="js/modalWindow.js"></script>
     <script defer src="js/objectMovement.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="shortcut icon" href="images/horse-racing.png">
-    <meta name="author" content="Olivier Luethy">
-    <!-- Stellt die Library zur verfügung, um die Animation zu verwenden -->
+    <script defer src="js/gameIsOver.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
-    <title>Horse Racing</title>
 </head>
 
-<body>
-    <div id="gameover">
-        <h1>GAME OVER</h1>
-        <p id="games"></p>
-        <a href="index.html">Restart</a>
-    </div>
-    <table class="title">
-        <tr>
-            <th style="text-align: left;">
-                <h1>Horse-Racing</h1>
-            </th>
-            <th style="text-align: center;">
-                <h1 id="whoWon"></h1>
-            </th>
-            <th style="text-align: right;"><button id="coins"><img src="images/Coin.svg" alt=""> 5 Coins</button></th>
-        </tr>
-    </table>
-    <div id="lines">
-        <div id="row1">
-            <h1>1</h1>
-            <img id="1" src="images/horse-racing.png" alt="">
-        </div>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-display antialiased">
 
-        <div id="row2">
-            <h1>2</h1>
-            <img id="2" src="images/lightblue-horse.png" alt="">
-        </div>
-
-        <div id="row3">
-            <h1>3</h1>
-            <img id="3" src="images/lightgreen-horse.png" alt="">
-        </div>
-
-        <div id="row4">
-            <h1>4</h1>
-            <img id="4" src="images/orange-horse.png" alt="">
-        </div>
-
-        <div id="row5">
-            <h1>5</h1>
-            <img id="5" src="images/purple-horse.png" alt="">
-        </div>
+    <!-- Game Over Screen -->
+    <div id="gameover" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-sm flex flex-col items-center justify-center">
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight text-rose-500 drop-shadow-[0_0_30px_rgba(244,63,94,0.4)]">GAME OVER</h1>
+        <p id="games" class="mt-6 text-xl text-slate-300"></p>
+        <a href="index.html" class="mt-10 px-8 py-3 rounded-full bg-emerald-500 text-slate-950 font-semibold hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/30">Restart</a>
     </div>
 
-    <p id="title-selecthorse">Please select your horse and amount to bet:</p>
+    <!-- Page container -->
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-6">
 
-    <table class="formTable">
-        <tr>
-            <td></td>
-            <td>
-                <label>Enter your bet here:</label><br>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input id="horse1" type="radio" name="bet">
-                <label for="horse1">Horse 1</label>
-            </td>
-            <td>
-                <input id="money" type="number" placeholder="My bet ...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input id="horse2" type="radio" name="bet">
-                <label for="horse2">Horse 2</label>
-            </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>
-                <input id="horse3" type="radio" name="bet">
-                <label for="horse3">Horse 3</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input id="horse4" type="radio" name="bet">
-                <label for="horse4">Horse 4</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input id="horse5" type="radio" name="bet">
-                <label for="horse5">Horse 5</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button id="play" onclick="startGame()">Play</button>
-                <button id="playagain" onclick="playagain()">Play again</button>
-            </td>
-            <td><button id="resetInput" onclick="resetInput()">Reset</button></td>
-        </tr>
-    </table>
+        <!-- Header -->
+        <header class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center gap-3">
+                <img src="images/horse-racing.png" alt="" class="w-10 h-10 rounded-lg bg-slate-800 p-1 ring-1 ring-slate-700">
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-tight">Horse <span class="text-emerald-400">Racing</span></h1>
+                    <p class="text-xs text-slate-400">Place your bet. Cheer your horse.</p>
+                </div>
+            </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Bank</h2>
+            <div id="whoWon" class="hidden md:block text-center text-lg font-semibold"></div>
+
+            <button id="coins" class="group flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 ring-1 ring-amber-400/40 text-amber-300 hover:bg-amber-500/20 transition">
+                <img src="images/Coin.svg" alt="" class="w-5 h-5">
+                <span><span id="coinCount">5</span> Coins</span>
+            </button>
+        </header>
+
+        <!-- Mobile winner banner -->
+        <div id="whoWonMobile" class="md:hidden mb-3 text-center text-lg font-semibold"></div>
+
+        <!-- Race Track -->
+        <section class="relative rounded-2xl overflow-hidden ring-1 ring-slate-800 shadow-2xl shadow-black/40">
+            <!-- Scoreboard -->
+            <div class="flex items-center justify-between px-4 py-2 bg-slate-900/80 border-b border-slate-800 text-xs uppercase tracking-widest text-slate-400">
+                <span>Lane</span>
+                <span id="raceStatus">Awaiting bet</span>
+                <span>Finish</span>
             </div>
-            <div class="modal-body">
-                <h3 id="modal-amount-of-coins"></h3>
-                <h3>If you want to buy more coins, there is the pricing table</h3>
-                <p>1 coin = 10 Rappen</p>
-                <p>10 coins = 1 Franken</p>
-                <p>20 coins = 2 Franken</p>
-                <p>50 coins = 5 Franken</p>
-                <p>100 coins = 10 Franken</p>
+
+            <!-- Track -->
+            <div id="track" class="relative bg-gradient-to-b from-track-900 via-track-800 to-track-900">
+                <!-- Start gate line -->
+                <div class="absolute left-[4%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-white/40 to-transparent z-10"></div>
+                <!-- Finish line -->
+                <div class="finish-line absolute right-[2%] top-0 bottom-0 w-3 z-10"></div>
+
+                <!-- Lanes -->
+                <div id="lines" class="relative">
+                    <!-- Lanes are rendered identically; horse images vary by lane -->
+                    <div class="lane" data-lane="1">
+                        <div class="lane-number">1</div>
+                        <div class="hurdles" data-hurdles="1"></div>
+                        <div class="horse-wrapper" data-horse="1">
+                            <div class="horse-body idle">
+                                <img id="1" src="images/horse-racing.png" alt="Horse 1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lane" data-lane="2">
+                        <div class="lane-number">2</div>
+                        <div class="hurdles" data-hurdles="2"></div>
+                        <div class="horse-wrapper" data-horse="2">
+                            <div class="horse-body idle">
+                                <img id="2" src="images/lightblue-horse.png" alt="Horse 2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lane" data-lane="3">
+                        <div class="lane-number">3</div>
+                        <div class="hurdles" data-hurdles="3"></div>
+                        <div class="horse-wrapper" data-horse="3">
+                            <div class="horse-body idle">
+                                <img id="3" src="images/lightgreen-horse.png" alt="Horse 3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lane" data-lane="4">
+                        <div class="lane-number">4</div>
+                        <div class="hurdles" data-hurdles="4"></div>
+                        <div class="horse-wrapper" data-horse="4">
+                            <div class="horse-body idle">
+                                <img id="4" src="images/orange-horse.png" alt="Horse 4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lane" data-lane="5">
+                        <div class="lane-number">5</div>
+                        <div class="hurdles" data-hurdles="5"></div>
+                        <div class="horse-wrapper" data-horse="5">
+                            <div class="horse-body idle">
+                                <img id="5" src="images/purple-horse.png" alt="Horse 5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Countdown overlay -->
+                <div id="countdown" class="hidden absolute inset-0 z-30 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm">
+                    <span id="countdownText" class="countdown-number text-8xl md:text-9xl font-extrabold text-emerald-400 drop-shadow-[0_0_40px_rgba(16,185,129,0.5)]"></span>
+                </div>
             </div>
-            <div class="modal-footer">
-                <h3>How many coins do you want to buy?</h3>
-                <p id="amountOfCoinsToBuy_error"></p>
-                <label for="">Enter amount of coins</label>
-                <input id="amountOfCoinsToBuy" oninput="convertToBuy()" type="number" placeholder="Enter numbers:"><br><br>
-                <label for="">This will cost you: </label>
-                <input placeholder="Your price" id="price" type="text" readonly><br><br>
-                <button id="fakeBuy">Buy</button>
+        </section>
+
+        <!-- Betting Panel -->
+        <section id="betPanel" class="mt-6 rounded-2xl bg-slate-900/60 ring-1 ring-slate-800 p-5 md:p-6">
+            <p id="title-selecthorse" class="text-center text-lg md:text-xl font-semibold text-slate-200 mb-4">
+                Pick your horse and place your bet
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-5" role="radiogroup" aria-label="Select horse">
+                <!-- Horse radio cards -->
+                <label class="horse-pick" data-accent="orange">
+                    <input id="horse1" type="radio" name="bet" value="1" class="sr-only">
+                    <div class="horse-pick-inner">
+                        <span class="horse-pick-dot" style="background:#f59e0b"></span>
+                        <span>Horse 1</span>
+                    </div>
+                </label>
+                <label class="horse-pick" data-accent="sky">
+                    <input id="horse2" type="radio" name="bet" value="2" class="sr-only">
+                    <div class="horse-pick-inner">
+                        <span class="horse-pick-dot" style="background:#38bdf8"></span>
+                        <span>Horse 2</span>
+                    </div>
+                </label>
+                <label class="horse-pick" data-accent="emerald">
+                    <input id="horse3" type="radio" name="bet" value="3" class="sr-only">
+                    <div class="horse-pick-inner">
+                        <span class="horse-pick-dot" style="background:#34d399"></span>
+                        <span>Horse 3</span>
+                    </div>
+                </label>
+                <label class="horse-pick" data-accent="amber">
+                    <input id="horse4" type="radio" name="bet" value="4" class="sr-only">
+                    <div class="horse-pick-inner">
+                        <span class="horse-pick-dot" style="background:#fbbf24"></span>
+                        <span>Horse 4</span>
+                    </div>
+                </label>
+                <label class="horse-pick" data-accent="violet">
+                    <input id="horse5" type="radio" name="bet" value="5" class="sr-only">
+                    <div class="horse-pick-inner">
+                        <span class="horse-pick-dot" style="background:#c084fc"></span>
+                        <span>Horse 5</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-stretch md:items-end gap-3">
+                <div class="flex-1">
+                    <label for="money" class="block text-sm text-slate-400 mb-1">Your bet</label>
+                    <input id="money" type="number" min="1" placeholder="Enter coins to bet..."
+                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30 outline-none text-slate-100 placeholder-slate-500 transition">
+                </div>
+                <div class="flex gap-2">
+                    <button id="play" onclick="startGame()"
+                        class="px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-semibold hover:bg-emerald-400 active:scale-[0.98] transition shadow-lg shadow-emerald-500/20">
+                        Start Race
+                    </button>
+                    <button id="playagain" onclick="playagain()"
+                        class="hidden px-6 py-3 rounded-xl bg-sky-500 text-slate-950 font-semibold hover:bg-sky-400 active:scale-[0.98] transition">
+                        Play again
+                    </button>
+                    <button id="resetInput" onclick="resetInput()"
+                        class="px-6 py-3 rounded-xl bg-slate-800 text-slate-200 font-medium hover:bg-slate-700 active:scale-[0.98] transition ring-1 ring-slate-700">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="hidden fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm flex items-start justify-center pt-20 px-4">
+        <div class="modal-content w-full max-w-lg rounded-2xl bg-slate-900 ring-1 ring-slate-800 overflow-hidden shadow-2xl shadow-black/50">
+            <div class="flex items-center justify-between px-5 py-3 bg-slate-800/80 border-b border-slate-800">
+                <h2 class="text-lg font-semibold">Bank</h2>
+                <span class="close cursor-pointer text-slate-400 hover:text-white text-2xl leading-none select-none">&times;</span>
+            </div>
+            <div class="px-5 py-4 space-y-2">
+                <h3 id="modal-amount-of-coins" class="text-emerald-400 font-semibold"></h3>
+                <p class="text-sm text-slate-400">If you want more coins, here's the pricing:</p>
+                <ul class="text-sm text-slate-300 grid grid-cols-2 gap-1">
+                    <li>1 coin = 10 Rappen</li>
+                    <li>10 coins = 1 Franken</li>
+                    <li>20 coins = 2 Franken</li>
+                    <li>50 coins = 5 Franken</li>
+                    <li>100 coins = 10 Franken</li>
+                </ul>
+            </div>
+            <div class="px-5 py-4 border-t border-slate-800 bg-slate-900/60 space-y-3">
+                <h3 class="font-semibold">How many coins do you want to buy?</h3>
+                <p id="amountOfCoinsToBuy_error" class="text-amber-400 text-sm"></p>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Amount of coins</label>
+                        <input id="amountOfCoinsToBuy" oninput="convertToBuy()" type="number" placeholder="Enter amount"
+                            class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 focus:border-emerald-500 outline-none text-slate-100 placeholder-slate-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">This will cost</label>
+                        <input id="price" placeholder="Your price" type="text" readonly
+                            class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-800 text-slate-300 cursor-not-allowed">
+                    </div>
+                </div>
+                <button id="fakeBuy"
+                    class="w-full px-5 py-2.5 rounded-xl bg-violet-500 text-slate-950 font-semibold hover:bg-violet-400 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    Buy
+                </button>
             </div>
         </div>
     </div>

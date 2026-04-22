@@ -1,90 +1,91 @@
-function playagain() {
-    // Reset variables
-    buttonClick = 0;
-    bet = 0;
-    rounds++;
-    horsePositions = [10, 10, 10, 10, 10];
-    horseElements = [];
+/* End-of-race handling — winner display, payout, play-again, game-over. */
 
-    // Reset horse positions and clear winner message
-    for (var x = 1; x < 6; x++) {
-        document.getElementById(x).style.left = 10 + "px";
+function checkWinner(winningLane) {
+    var playerWon = (horseNumber === winningLane);
+    setRaceStatus(playerWon ? "You won!" : "You lost");
+
+    /* Freeze horses: winner dances, others go idle */
+    for (var i = 0; i < LANE_COUNT; i++) {
+        horseBodies[i].classList.remove("galloping", "jumping");
+        if (i + 1 === winningLane) {
+            horseBodies[i].classList.add("winner");
+        } else {
+            horseBodies[i].classList.add("idle");
+        }
     }
-    document.getElementById("whoWon").innerHTML = "";
 
-    startGame();
+    if (playerWon) {
+        handleWin(winningLane);
+    } else {
+        handleLoss(winningLane);
+    }
+
+    document.getElementById("play").classList.add("hidden");
+    document.getElementById("play").disabled = false;
+    document.getElementById("resetInput").disabled = false;
+    document.getElementById("playagain").classList.remove("hidden");
+}
+
+function handleWin(winningLane) {
+    coins += bet * 2;
+    updateCoinsUI();
+    showWinnerBanner(winningLane, true);
+    confetti({
+        particleCount: 140,
+        spread: 80,
+        origin: { y: 0.6 }
+    });
+}
+
+function handleLoss(winningLane) {
+    coins -= bet;
+    updateCoinsUI();
+    showWinnerBanner(winningLane, false);
+
+    if (coins <= 0) {
+        setTimeout(gameover, 1200);
+    }
+}
+
+function showWinnerBanner(winningLane, playerWon) {
+    var msg = "Horse " + winningLane + " won!";
+    var cls = playerWon ? "won" : "lost";
+    ["whoWon", "whoWonMobile"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.remove("won", "lost");
+        el.classList.add(cls);
+    });
+}
+
+function playagain() {
+    rounds++;
+    buttonClick = 0;
+    raceInProgress = false;
+    horsePositions = [0, 0, 0, 0, 0];
+
+    for (var i = 0; i < LANE_COUNT; i++) {
+        horseBodies[i].classList.remove("winner", "idle", "jumping");
+        horseBodies[i].classList.add("galloping");
+        horseWrappers[i].style.transform = "translate3d(0, -50%, 0)";
+    }
+
+    ["whoWon", "whoWonMobile"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) { el.textContent = ""; el.classList.remove("won", "lost"); }
+    });
+
+    setRaceStatus("Awaiting bet");
+    document.getElementById("play").classList.remove("hidden");
+    document.getElementById("playagain").classList.add("hidden");
+    resetInput();
+    placeHurdles();
 }
 
 function gameover() {
-    document.querySelector(".formTable").style.display = "none";
-    document.getElementById("lines").style.display = "none";
-    document.getElementById("title-selecthorse").style.display = "none";
-    document.querySelector("table").style.display = "none";
-    document.body.style.backgroundColor = "black";
-    document.getElementById("gameover").style.display = "block";
-    if (rounds > 1) {
-        document.getElementById("games").innerHTML = "You were able to play " + rounds + " rounds";
-    } else {
-        document.getElementById("games").innerHTML = "You were able to play " + rounds + " round";
-    }
-}
-
-/* This function determines if the player has won or not */
-function checkWinner() {
-    const horses = [1, 2, 3, 4, 5];
-    horses.sort((a, b) => parseInt(document.getElementById(b).style.left) - parseInt(document.getElementById(a).style.left));
-    const winningHorse = horses[0];
-
-    if (horseNumber == winningHorse) {
-        raceInProgress = false; // Set race to be finished
-        playerHasWon(winningHorse, 1);
-    } else {
-        playerHasLostRound(winningHorse, 0);
-
-        if (coins <= 0) {
-            gameover();
-        } else {
-            playerHasStillCoinsLeft();
-        }
-    }
-}
-
-function playerHasWon(winner, wonLost) {
-    console.log("Player won");
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: {
-            y: 0.6
-        }
-    });
-    coins += bet * 2;
-    document.getElementById("coins").innerHTML = "<img src='images/Coin.svg' alt=''>" + " " + coins + " " + "Coins";
-    document.getElementById("play").style.display = "none";
-    document.getElementById("playagain").style.display = "inline-block";
-    if (wonLost == 1) {
-        document.getElementById("whoWon").style.color = "green";
-        document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
-    } else {
-        document.getElementById("whoWon").style.color = "red";
-        document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
-    }
-}
-
-function playerHasLostRound(winner, wonLost) {
-    console.log("Player Lost");
-    console.log("Money before: " + coins + " The bet: " + bet);
-    if (wonLost == 0) {
-        coins -= bet;
-    }
-    console.log("Money now: " + coins)
-    document.getElementById("coins").innerHTML = "<img src='images/Coin.svg' alt=''>" + " " + coins + " " + "Coins";
-    document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
-    if (wonLost == 1) {
-        document.getElementById("whoWon").style.color = "green";
-        document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
-    } else {
-        document.getElementById("whoWon").style.color = "red";
-        document.getElementById("whoWon").innerHTML = "Number " + winner + " won!";
-    }
+    var screen = document.getElementById("gameover");
+    document.getElementById("games").textContent =
+        "You were able to play " + rounds + (rounds === 1 ? " round" : " rounds");
+    screen.classList.remove("hidden");
 }

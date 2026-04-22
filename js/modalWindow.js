@@ -1,35 +1,38 @@
-function playerHasStillCoinsLeft() {
-    rounds++;
-    buttonClick == 0;
-    document.getElementById("play").style.display = "none";
-    document.getElementById("playagain").style.display = "inline-block";
-}
+/* Coin-purchase modal behavior. */
 
-document.getElementById("modal-amount-of-coins").innerHTML = "You currently have: " + coins + " coins.";
-document.getElementById("fakeBuy").disabled = true;
-document.getElementById("fakeBuy").style.cursor = "no-drop";
+document.addEventListener("DOMContentLoaded", function () {
+    var buyBtn = document.getElementById("fakeBuy");
+    buyBtn.disabled = true;
+
+    buyBtn.addEventListener("click", function () {
+        if (buyBtn.disabled) return;
+        window.location = "https://www.paypal.com/ch/home";
+    });
+});
 
 function convertToBuy() {
-    coinsToBuy = parseInt(document.getElementById("amountOfCoinsToBuy").value);
-    if (coinsToBuy || coinsToBuy === 0) {
-        if (coinsToBuy <= 0) {
-            document.getElementById("amountOfCoinsToBuy_error").innerHTML = "The amount must be bigger than 0";
-            document.getElementById("fakeBuy").disabled = true;
-            document.getElementById("fakeBuy").style.cursor = "no-drop";
-        } else {
-            document.getElementById("amountOfCoinsToBuy_error").innerHTML = "";
-            document.getElementById("price").value = coinsToBuy / 10 + " CHF";
-            document.getElementById("fakeBuy").disabled = false;
-            document.getElementById("fakeBuy").style.cursor = "pointer";
-        }
-    } else {
-        document.getElementById("amountOfCoinsToBuy_error").innerHTML = "Please enter a valid amount";
-        document.getElementById("fakeBuy").disabled = true;
-        document.getElementById("price").value = "";
-        document.getElementById("fakeBuy").style.cursor = "no-drop";
-    }
-}
+    var input = document.getElementById("amountOfCoinsToBuy");
+    var errorEl = document.getElementById("amountOfCoinsToBuy_error");
+    var priceEl = document.getElementById("price");
+    var buyBtn = document.getElementById("fakeBuy");
 
-document.getElementById("fakeBuy").addEventListener("click", function() {
-    window.location = "https://www.paypal.com/ch/home";
-})
+    coinsToBuy = parseInt(input.value, 10);
+
+    if (isNaN(coinsToBuy)) {
+        errorEl.textContent = "Please enter a valid amount";
+        priceEl.value = "";
+        buyBtn.disabled = true;
+        return;
+    }
+
+    if (coinsToBuy <= 0) {
+        errorEl.textContent = "The amount must be greater than 0";
+        priceEl.value = "";
+        buyBtn.disabled = true;
+        return;
+    }
+
+    errorEl.textContent = "";
+    priceEl.value = (coinsToBuy / 10).toFixed(2) + " CHF";
+    buyBtn.disabled = false;
+}
