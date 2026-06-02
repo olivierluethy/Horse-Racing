@@ -79,6 +79,7 @@ function playagain() {
     setRaceStatus("Awaiting bet");
     document.getElementById("play").classList.remove("hidden");
     document.getElementById("playagain").classList.add("hidden");
+    setBetControlsLocked(false);
     resetInput();
     placeHurdles();
 }

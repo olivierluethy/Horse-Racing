@@ -29,6 +29,7 @@ function startGame() {
     buttonClick = 1;
     document.getElementById("play").disabled = true;
     document.getElementById("resetInput").disabled = true;
+    setBetControlsLocked(true);
 
     /* Fresh race setup */
     horsePositions = [0, 0, 0, 0, 0];

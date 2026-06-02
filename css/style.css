@@ -238,6 +238,17 @@
     box-shadow: 0 0 6px currentColor;
 }
 
+/* Bet controls are locked once the race starts so the pick can't be changed. */
+#betPanel.bets-locked .horse-pick {
+    cursor: not-allowed;
+    opacity: 0.55;
+    pointer-events: none;
+}
+#betPanel.bets-locked #money {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
 /* ----- Winner banner ----------------------------------------------------- */
 #whoWon.won, #whoWonMobile.won  { color: #34d399; }
 #whoWon.lost, #whoWonMobile.lost { color: #f87171; }

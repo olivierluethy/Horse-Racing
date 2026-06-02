@@ -42,9 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
         horseBodies.push(document.querySelector('.horse-wrapper[data-horse="' + i + '"] .horse-body'));
     }
 
-    /* Wire horse-pick radios to keep track of selected horse for UI polish */
+    /* Wire horse-pick radios to keep track of selected horse for UI polish.
+       Once a bet is locked in (race started), ignore any further changes so
+       the player can't switch horses mid-race to chase the leader. */
     document.querySelectorAll('input[name="bet"]').forEach(function (r) {
         r.addEventListener("change", function () {
+            if (buttonClick === 1) return;
             horseNumber = parseInt(this.value, 10);
         });
     });
@@ -71,6 +74,18 @@ function resetInput() {
     document.querySelectorAll('input[name="bet"]').forEach(function (r) { r.checked = false; });
     document.getElementById("money").value = "";
     horseNumber = 0;
+}
+
+/* Lock/unlock the betting controls so the chosen horse and amount can't be
+   changed after the race has started. */
+function setBetControlsLocked(locked) {
+    document.querySelectorAll('input[name="bet"]').forEach(function (r) {
+        r.disabled = locked;
+    });
+    document.getElementById("money").disabled = locked;
+
+    var panel = document.getElementById("betPanel");
+    if (panel) panel.classList.toggle("bets-locked", locked);
 }
 
 /* Generate hurdle positions shared across lanes in count but jittered per lane
