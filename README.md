@@ -1,42 +1,37 @@
 <p align="center">
-  <a href="https://github.com/olivierluethy/Horse-Racing-in-JS">
+  <a href="https://github.com/olivierluethy/Horse-Racing">
     <img src="images/horse-racing.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Welcome to the Horse-Racing game!</h3>
-  <p align="center">A game where you can bet on a horse without losing real money!</p>
+  <h3 align="center">Horse-Racing</h3>
+  <p align="center">A browser game where you bet on horses — with play money, not real money.</p>
 </p>
 
-## The story of this game
-Since I love to code and develop ideas in general, I wanted to have a game where you could bet on a horse, put the bet on a horse and if you win you get more.
-And of course, if you lose, you lose the bet and the money you put on it.
+## About
 
-I started developing this game many years ago, but there were always things I wanted to improve or even add new features.
-I hope you enjoy the current version!
+A small horse-racing game that runs entirely in the browser. Place a bet on a horse, watch the
+race play out, and if your horse wins you get a payout; if it loses, you lose your stake. It's a
+long-running personal project that I keep tweaking and adding features to.
 
-## Getting Started
-1. Clone this repository to your local machine.
-2. Open the application in your preferred web browser.
-3. Start utilizing the features to enhance your academic experience.
+## Tech
 
-## How to Contribute
-We welcome contributions to make Horse-Racing even better! Feel free to fork the repository, make your improvements, and submit a pull request.
+- Plain **HTML**, **CSS**, and **JavaScript** — no build step, no dependencies.
 
-## Contact
-If you have any questions or feedback, please contact us at [spamemailadresseol221@gmail.com].
+## Run
 
-## Links that were very useful during this trip
-Issue 1: How do I add a delay in a JavaScript loop?<br>
-Link: https://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
+1. Clone this repository.
+2. Open `index.html` in your web browser.
+3. Pick a horse, place your bet, and start the race.
 
-Issue 2: Generate random number between two values<br>
-Link: https://www.codegrepper.com/code-examples/javascript/random+number+generator+1-10+javascript
+## Contributing
 
-Issue 3: Check if a radio button<br>
-Link: https://www.geeksforgeeks.org/how-to-check-whether-a-radio-button-is-selected-with-javascript/
+Contributions are welcome — fork the repository, make your changes, and open a pull request.
 
-Issue 4: Value change event of input type number<br>
-Link: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_oninput
+## Useful references
 
-Issue 5: For Loop in Javascript (document.getElementById)<br>
-Link: https://stackoverflow.com/questions/26847366/for-loop-in-javascript-document-getelementbyid
+Links that helped while building this:
+
+- [Add a delay in a JavaScript loop](https://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop)
+- [Check whether a radio button is selected](https://www.geeksforgeeks.org/how-to-check-whether-a-radio-button-is-selected-with-javascript/)
+- [oninput event of number inputs](https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_oninput)
+- [for loops with document.getElementById](https://stackoverflow.com/questions/26847366/for-loop-in-javascript-document-getelementbyid)
